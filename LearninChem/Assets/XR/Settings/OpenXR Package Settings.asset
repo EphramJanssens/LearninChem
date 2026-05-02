@@ -14,21 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.XR.OpenXR::UnityEngine.XR.OpenXR.OpenXRSettings
   features:
   - {fileID: -3325571819300213441}
-  - {fileID: -8285992700373036711}
-  - {fileID: 6894957784107458793}
   - {fileID: -4442423186111320678}
-  - {fileID: 4348953283290260119}
+  - {fileID: -4321672177635999170}
   - {fileID: -7525621769402208939}
-  - {fileID: 2882700183778168960}
+  - {fileID: 4348953283290260119}
+  - {fileID: 2858776751265716462}
+  - {fileID: -1416324050531781484}
+  - {fileID: -5519790887542699840}
   - {fileID: 7031369489610797072}
   - {fileID: 7804930998839618465}
-  - {fileID: 2858776751265716462}
-  - {fileID: -5519790887542699840}
-  - {fileID: -1416324050531781484}
-  - {fileID: -4321672177635999170}
-  - {fileID: 4814231742421945688}
   - {fileID: -4594953256199995855}
   - {fileID: -8341450140263828158}
+  - {fileID: 4814231742421945688}
+  - {fileID: 2882700183778168960}
   - {fileID: 7413298447552665672}
   - {fileID: 3090760000514787994}
   - {fileID: 9084470450112060801}
@@ -39,6 +37,7 @@ MonoBehaviour:
   - {fileID: -4441399971553163546}
   - {fileID: 6443582316842099074}
   - {fileID: -2273190228691779254}
+  - {fileID: -8285992700373036711}
   - {fileID: 8127317764063963276}
   - {fileID: -7249126927516040843}
   - {fileID: -6681420008490944068}
@@ -60,9 +59,10 @@ MonoBehaviour:
   - {fileID: 6370986606352803516}
   - {fileID: 7117099723698646400}
   - {fileID: -5656110756026175292}
+  - {fileID: 6894957784107458793}
   customLoaderName: 
   m_renderMode: 1
-  m_latencyOptimization: 0
+  m_latencyOptimization: 1
   m_autoColorSubmissionMode: 1
   m_colorSubmissionModes:
     m_List: 00000000
@@ -1841,8 +1841,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.XR.OpenXR::UnityEngine.XR.OpenXR.OpenXRSettings
   features:
   - {fileID: 1074719729205372945}
-  - {fileID: 2446353095419517545}
-  - {fileID: 5893838770149685032}
   - {fileID: 2446806677525682347}
   - {fileID: -1379313266171192862}
   - {fileID: 5156997034571641118}
@@ -1853,6 +1851,7 @@ MonoBehaviour:
   - {fileID: 5347977123127234534}
   - {fileID: 5269837160660927291}
   - {fileID: -2172517180953944863}
+  - {fileID: 2446353095419517545}
   - {fileID: 4221454889568813426}
   - {fileID: -1559735557277379790}
   - {fileID: 8350094872983906341}
@@ -1874,6 +1873,7 @@ MonoBehaviour:
   - {fileID: -2585308912596513577}
   - {fileID: 8365300824535700114}
   - {fileID: 7341336683748882508}
+  - {fileID: 5893838770149685032}
   customLoaderName: 
   m_renderMode: 1
   m_latencyOptimization: 0
