@@ -25,8 +25,8 @@
   <Project Path="Unity.VisualStudio.Editor.csproj" />
   <Project Path="Unity.InputSystem.csproj" />
   <Project Path="Unity.XR.ARFoundation.csproj" />
-  <Project Path="PPv2URPConverters.csproj" />
   <Project Path="Unity.XR.Interaction.Toolkit.Editor.csproj" />
+  <Project Path="PPv2URPConverters.csproj" />
   <Project Path="Unity.XR.CoreUtils.csproj" />
   <Project Path="Unity.XR.Simulation.Editor.csproj" />
   <Project Path="Unity.Searcher.Editor.csproj" />
@@ -37,11 +37,12 @@
   <Project Path="Unity.VisualScripting.Core.csproj" />
   <Project Path="Unity.UnifiedRayTracing.Runtime.csproj" />
   <Project Path="Unity.XR.Interaction.Toolkit.Samples.InteractionSimulator.csproj" />
-  <Project Path="Unity.AI.Navigation.Editor.ConversionSystem.csproj" />
   <Project Path="Unity.VisualScripting.State.Editor.csproj" />
+  <Project Path="Unity.AI.Navigation.Editor.ConversionSystem.csproj" />
   <Project Path="Unity.Burst.CodeGen.csproj" />
   <Project Path="Unity.XR.AndroidOpenXR.csproj" />
   <Project Path="Unity.VisualScripting.Flow.csproj" />
+  <Project Path="Assembly-CSharp.csproj" />
   <Project Path="Unity.PerformanceTesting.csproj" />
   <Project Path="Unity.TextMeshPro.csproj" />
   <Project Path="Unity.XR.CompositionLayers.UIInteraction.csproj" />
@@ -87,7 +88,6 @@
   <Project Path="Unity.XR.ARFoundation.Editor.csproj" />
   <Project Path="Unity.EditorCoroutines.Editor.csproj" />
   <Project Path="Unity.XR.OpenXR.Features.MetaQuestSupport.csproj" />
-  <Project Path="Assembly-CSharp.csproj" />
   <Project Path="Unity.CollabProxy.Editor.csproj" />
   <Project Path="Unity.RenderPipeline.Universal.ShaderLibrary.csproj" />
   <Project Path="Unity.XR.OpenXR.Features.RuntimeDebugger.csproj" />
