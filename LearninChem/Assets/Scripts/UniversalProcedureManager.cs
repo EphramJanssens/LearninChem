@@ -44,7 +44,11 @@ public class UniversalProcedureManager : MonoBehaviour
         if (incomingActionID == targetActionID)
         {
             Debug.Log($"<color=green>Correct!</color> Voltooid: {incomingActionID}");
-            lastTriggeredAction = incomingActionID;
+            // --- CONNECT TO DASHBOARD TESTER ---
+           if (PPEDashboardTester.Instance != null)
+            {
+                PPEDashboardTester.Instance.SetStepComplete(incomingActionID);
+            }
             currentStepIndex++;
 
             if (currentStepIndex >= activeModule.stepActionIDs.Length)
