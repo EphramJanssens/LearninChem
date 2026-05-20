@@ -1,0 +1,6 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Prefabs/UIPrefab/Module1/ButtonStyle.uss?fileID=7433441132597879392&amp;guid=62c164e983c8b1e4c8952b1c976a87db&amp;type=3#ButtonStyle"/>
+    <ui:VisualElement style="flex-grow: 1; align-items: center; align-content: flex-start; align-self: stretch; justify-content: center; background-color: rgb(255, 0, 0);">
+        <ui:Button text="Button" name="StartTrainingBtn"/>
+    </ui:VisualElement>
+</ui:UXML>

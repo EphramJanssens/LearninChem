@@ -15,7 +15,7 @@
                 <ui:Image name="LabCoatImg" style="background-image: url(&quot;project://database/Assets/Images/Safety_coat_transparent_white.png?fileID=21300000&amp;guid=7dedf11d52daad74ea0545e4faf228a6&amp;type=3#Safety_coat_transparent_white&quot;); align-self: auto; align-items: stretch; flex-direction: row; background-position-x: left 0; background-position-y: center; -unity-background-scale-mode: stretch-to-fill; width: 125px; height: 50px; background-size: 50% 100%; margin-right: -30px; margin-left: -15px; padding-left: 0; padding-right: 0;"/>
                 <ui:Label text="Lichaam bescherming" name="LichaamBescherming" style="color: rgb(255, 255, 255); -unity-font-definition: resource(&quot;Fonts &amp; Materials/Roboto-Medium&quot;); font-size: 24px; flex-direction: row; justify-content: space-around;"/>
             </ui:VisualElement>
-            <ui:Button text="Start training" name="StartTrainingBtn"/>
+            <ui:Button text="Start training" name="StartTrainingBtn" focusable="false"/>
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
