@@ -7,65 +7,69 @@ public class PPEDashboardTester : MonoBehaviour
 
     private UIDocument uiDocument;
     
-    // References to your 3 UXML containers
-    private VisualElement panelGoggles;
-    private VisualElement panelGloves;
-    private VisualElement panelCoat;
+    private VisualElement startMenuContainer;
+    private VisualElement taskPanelContainer;
+
+    private Label instructionText;
+    private Label infoText;
     private Button startButton;
 
-    // Define colors using clean hex design principles
-    private readonly Color normalColor = new Color(0.10f, 0.11f, 0.14f); // rgb(26, 29, 36)
-    private readonly Color successColor = new Color(0.02f, 0.38f, 0.24f); // Clean Dark Green
+    private VisualElement helpPanel;
+    private Label helpMessage;
 
     void Awake()
     {
-    Instance = this;
-    uiDocument = GetComponent<UIDocument>();
-    var root = uiDocument.rootVisualElement;
+        Instance = this;
+        uiDocument = GetComponent<UIDocument>();
+        var root = uiDocument.rootVisualElement;
 
-    // FIX: Match the names exactly as written in your UXML text!
-    panelGoggles = root.Q<VisualElement>("PPEInfoPanel1"); // Linked to your first panel
-    panelGloves = root.Q<VisualElement>("PPEInfoPanel2");  // Linked to your second panel
-    panelCoat = root.Q<VisualElement>("PPEInfoPanel3");    // Linked to your third panel
-    startButton = root.Q<Button>("StartTrainingBtn");
+        startMenuContainer = root.Q<VisualElement>("StartMenuContainer");
+        taskPanelContainer = root.Q<VisualElement>("TaskPanelContainer");
 
-    if (startButton != null)
-    {
-        startButton.clicked += () => Debug.Log("<color=cyan>Startknop ingedrukt!</color> Start de procedure.");
-    }
-    }
+        instructionText = root.Q<Label>("InstructionText");
+        infoText = root.Q<Label>("InfoText");
+        startButton = root.Q<Button>("StartTrainingBtn");
 
-    // Call this function when a task succeeds
-    public void SetStepComplete(string actionID)
-    {
-        switch (actionID)
+        helpPanel = root.Q<VisualElement>("HelpPanel");
+        helpMessage = root.Q<Label>("HelpMessage");
+
+        if (helpPanel != null) helpPanel.style.display = DisplayStyle.None;
+
+        if (startButton != null)
         {
-            case "Goggles":
-                ApplySuccessStyle(panelGoggles);
-                break;
-            case "LabCoat":
-                ApplySuccessStyle(panelCoat);
-                break;
-            case "Gloves":
-                ApplySuccessStyle(panelGloves);
-                break;
+            startButton.clicked += OnStartButtonClicked;
         }
     }
 
-    private void ApplySuccessStyle(VisualElement element)
+    void OnStartButtonClicked()
     {
-        if (element == null) return;
+        if (startMenuContainer != null) startMenuContainer.style.display = DisplayStyle.None;
+        if (taskPanelContainer != null) taskPanelContainer.style.display = DisplayStyle.Flex;
 
-        // Visual feedback: Shift background to green and apply a solid thick border
-        element.style.backgroundColor = successColor;
-        element.style.borderTopColor = Color.green;
-        element.style.borderBottomColor = Color.green;
-        element.style.borderLeftColor = Color.green;
-        element.style.borderRightColor = Color.green;
+        if (UniversalProcedureManager.Instance != null)
+        {
+            UniversalProcedureManager.Instance.StartModule(UniversalProcedureManager.Instance.activeModule);
+        }
+    }
+
+    public void UpdateTaskPanel(string instruction, string dynamicInfo)
+    {
+        if (instructionText != null) instructionText.text = instruction;
+        if (infoText != null) infoText.text = dynamicInfo;
         
-        element.style.borderTopWidth = 3;
-        element.style.borderBottomWidth = 3;
-        element.style.borderLeftWidth = 3;
-        element.style.borderRightWidth = 3;
+        if (helpPanel != null) helpPanel.style.display = DisplayStyle.None;
+    }
+    
+    public void ShowFailure(string message)
+    {
+        if (helpMessage != null) helpMessage.text = message;
+        if (helpPanel != null) helpPanel.style.display = DisplayStyle.Flex;
+    }
+
+    public void ShowModuleComplete()
+    {
+        if (instructionText != null) instructionText.text = "Module Voltooid!";
+        if (infoText != null) infoText.text = "Goed gewerkt! Je hebt alle PBM's correct aangetrokken.";
+        if (helpPanel != null) helpPanel.style.display = DisplayStyle.None;
     }
 }

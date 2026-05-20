@@ -1,4 +1,3 @@
-using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 public class ResettableProp : MonoBehaviour
@@ -16,13 +15,13 @@ public class ResettableProp : MonoBehaviour
 
     public void ResetToHome()
     {
-        if (rb != null)
-        {
-            rb.linearVelocity = Vector3.zero;
-            rb.angularVelocity = Vector3.zero;
-
-            transform.position = startPosition;
-            transform.rotation = startRotation;
+        if (rb != null) 
+        { 
+            rb.linearVelocity = Vector3.zero; 
+            rb.angularVelocity = Vector3.zero; 
         }
+        
+        transform.position = startPosition;
+        transform.rotation = startRotation;
     }
 }
