@@ -13,6 +13,7 @@ public class PPEDashboardTester : MonoBehaviour
     private Label instructionText;
     private Label infoText;
     private Button startButton;
+    private Button restartButton;
 
     private VisualElement helpPanel;
     private Label helpMessage;
@@ -39,6 +40,13 @@ public class PPEDashboardTester : MonoBehaviour
         {
             startButton.clicked += OnStartButtonClicked;
         }
+
+        restartButton = root.Q<Button>("RestartBtn");
+
+        if (restartButton != null)
+        {
+            restartButton.clicked += OnRestartButtonClicked;
+        }
     }
 
     void OnStartButtonClicked()
@@ -50,6 +58,19 @@ public class PPEDashboardTester : MonoBehaviour
         {
             UniversalProcedureManager.Instance.StartModule(UniversalProcedureManager.Instance.activeModule);
         }
+    }
+
+    void OnRestartButtonClicked()
+    {
+        if (startMenuContainer != null) startMenuContainer.style.display = DisplayStyle.Flex;
+        if (taskPanelContainer != null) taskPanelContainer.style.display = DisplayStyle.None;
+        if (restartButton != null) restartButton.style.display = DisplayStyle.None;
+        if (helpPanel != null) helpPanel.style.display = DisplayStyle.None;
+
+       if (UniversalProcedureManager.Instance != null)
+       {
+            UniversalProcedureManager.Instance.ResetSimulation();
+       }
     }
 
     public void UpdateTaskPanel(string instruction, string dynamicInfo)
@@ -71,5 +92,7 @@ public class PPEDashboardTester : MonoBehaviour
         if (instructionText != null) instructionText.text = "Module Voltooid!";
         if (infoText != null) infoText.text = "Goed gewerkt! Je hebt alle PBM's correct aangetrokken.";
         if (helpPanel != null) helpPanel.style.display = DisplayStyle.None;
+    
+        if (restartButton != null) restartButton.style.display = DisplayStyle.Flex;
     }
 }

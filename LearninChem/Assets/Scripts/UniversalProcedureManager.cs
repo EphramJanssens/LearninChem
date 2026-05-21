@@ -8,6 +8,7 @@ public class UniversalProcedureManager : MonoBehaviour
     public ModuleData activeModule;
     
     private int currentStepIndex = 0;
+    private bool isModuleActive = false; 
 
     void Awake()
     {
@@ -18,11 +19,13 @@ public class UniversalProcedureManager : MonoBehaviour
     {
         activeModule = module;
         currentStepIndex = 0;
+        isModuleActive = true; 
         PrintCurrentStep();
     }
 
     public void OnActionTriggered(string incomingActionID)
     {
+        if (!isModuleActive) return; 
         if (activeModule == null) return;
         if (currentStepIndex >= activeModule.stepActionIDs.Length) return;
 
@@ -48,7 +51,6 @@ public class UniversalProcedureManager : MonoBehaviour
         }
         else
         {
-            // --- FOUTMELDING NAAR DE UI STUREN ---
             string hint = activeModule.stepDescriptions[currentStepIndex];
             Debug.Log($"<color=red>Niet correct!</color> Hint: {hint}");
             
@@ -59,17 +61,29 @@ public class UniversalProcedureManager : MonoBehaviour
         }
     }
 
+    public void ResetSimulation()
+    {
+        currentStepIndex = 0;
+        isModuleActive = false; 
+
+        ResettableProp[] allProps = FindObjectsByType<ResettableProp>(FindObjectsSortMode.None);
+        foreach (ResettableProp prop in allProps)
+        {
+            prop.ResetToHome();
+        }
+
+        Debug.Log("<color=magenta>Simulatie is volledig gereset!</color>");
+    }
+
     void PrintCurrentStep()
     {
-        if (currentStepIndex >= activeModule.stepActionIDs.Length) return;
+        if (activeModule == null || currentStepIndex >= activeModule.stepActionIDs.Length) return;
 
         string currentInstructions = activeModule.stepDescriptions[currentStepIndex];
-        
         string currentInfo = activeModule.stepInfo[currentStepIndex]; 
 
         Debug.Log($"<color=yellow>Nieuwe Taak:</color> {currentInstructions}");
 
-        // --- UPDATE HET TWEEDE SCHERM VAN DE UI ---
         if (PPEDashboardTester.Instance != null)
         {
             PPEDashboardTester.Instance.UpdateTaskPanel(currentInstructions, currentInfo);
