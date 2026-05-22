@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.InteractionLayerSettings
   m_LayerNames:
   - Default
-  - 
-  - 
-  - 
-  - 
+  - Module1_hands
+  - Module1_coat
+  - Module1_goggles
+  - UI
   - 
   - 
   - 

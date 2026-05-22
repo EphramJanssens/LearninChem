@@ -1,0 +1,11 @@
+:root {
+}
+
+.InfoPanel {
+    -unity-font-definition: resource("Fonts & Materials/Roboto-Medium");
+    color: rgb(255, 255, 255);
+    align-items: stretch;
+    justify-content: flex-start;
+    align-self: auto;
+    align-content: flex-start;
+}
