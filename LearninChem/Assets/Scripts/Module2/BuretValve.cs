@@ -9,25 +9,37 @@ public class BuretValve : MonoBehaviour
     void Awake()
     {
         interactable = GetComponent<XRSimpleInteractable>();
-        // Luister naar de klik van de speler
         interactable.selectEntered.AddListener(ToggleValve);
     }
 
     private void ToggleValve(UnityEngine.XR.Interaction.Toolkit.SelectEnterEventArgs args)
     {
-        isOpen = !isOpen; // Wissel de status
+        isOpen = !isOpen; 
+        
+        Debug.Log($"<color=yellow>[BuretValve]</color> Kraan is aangeklikt! Status is nu: {(isOpen ? "OPEN" : "DICHT")}");
 
         if (isOpen)
         {
-            // Draai het model 90 graden open (visuele feedback)
             transform.localEulerAngles = new Vector3(0, 0, 90);
             UniversalProcedureManager.Instance.OnActionTriggered("OpenValve");
+            
+            // CHECK 2: Bestaat de controller of is hij kwijt?
+            if (TitrationController.Instance != null) 
+            {
+                Debug.Log("<color=yellow>[BuretValve]</color> Controller gevonden, ik roep StartTitration() aan!");
+                TitrationController.Instance.StartTitration();
+            }
+            else
+            {
+                Debug.LogError("<color=red>[BuretValve]</color> OEPS! TitrationController.Instance is NULL. Staat het script in je scene?");
+            }
         }
         else
         {
-            // Draai het model terug dicht
             transform.localEulerAngles = new Vector3(0, 0, 0);
             UniversalProcedureManager.Instance.OnActionTriggered("CloseValve");
+            
+            if (TitrationController.Instance != null) TitrationController.Instance.StopTitration();
         }
     }
 }

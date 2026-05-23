@@ -72,6 +72,8 @@ public class UniversalProcedureManager : MonoBehaviour
             prop.ResetToHome();
         }
 
+        if (TitrationController.Instance != null) TitrationController.Instance.ResetLiquid();
+
         Debug.Log("<color=magenta>Simulatie is volledig gereset!</color>");
     }
 
