@@ -23,7 +23,7 @@ public class ResettableProp : MonoBehaviour
             originalIsKinematic = rb.isKinematic;
         }
 
-        Debug.Log($"<color=orange>[ResetSysteem]</color> {gameObject.name} heeft startpositie onthouden: {startPosition}");
+        //Debug.Log($"<color=orange>[ResetSysteem]</color> {gameObject.name} heeft startpositie onthouden: {startPosition}");
     }
 
     public void ResetToHome()
@@ -65,6 +65,6 @@ public class ResettableProp : MonoBehaviour
             grabInteractable.enabled = true;
         }
 
-        Debug.Log($"<color=orange>[ResetSysteem]</color> {gameObject.name} is succesvol gereset naar de tafel!");
+        //Debug.Log($"<color=orange>[ResetSysteem]</color> {gameObject.name} is succesvol gereset naar de tafel!");
     }
 }
