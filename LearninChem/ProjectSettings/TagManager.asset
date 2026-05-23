@@ -7,6 +7,7 @@ TagManager:
   - SampleBottle
   - IndicatorBottle
   - TitrantBottle
+  - StirRod
   layers:
   - Default
   - TransparentFX
