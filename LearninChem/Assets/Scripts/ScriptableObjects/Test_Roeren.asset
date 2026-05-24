@@ -14,8 +14,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ModuleData
   moduleName: 
   stepActionIDs:
+  - PlaceBeakerOnScale
+  - TareScale
+  - AddKalk
+  - AddWater
   - StirSolution
   stepDescriptions:
-  - Test roeren
+  - Plaats de beker
+  - Kalibreer de weegschaal
+  - Voeg de kalk toe
+  - Voeg oplosmiddel toe
+  - Meng de oplossing
   stepInfo:
-  - beweeg 2.5 seconden
+  - Pak een lege glazen beker en zet deze op de weegschaal.
+  - Druk op de 'Tarra' (of nul) knop op de weegschaal om het gewicht van het glas
+    te negeren.
+  - Pak het potje kalk en houd deze boven de beker om 5.50g toe te voegen.
+  - Pak de beker van de weegschaal. Gebruik de spuitfles met gedestilleerd water
+    om de beker te vullen.
+  - Pak de glazen roerstaaf en roer rustig in de beker totdat de kalk is opgelost.

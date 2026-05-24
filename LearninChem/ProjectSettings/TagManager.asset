@@ -8,6 +8,8 @@ TagManager:
   - IndicatorBottle
   - TitrantBottle
   - StirRod
+  - KalkBottle
+  - WaterBottle
   layers:
   - Default
   - TransparentFX
