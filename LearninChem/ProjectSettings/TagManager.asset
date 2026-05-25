@@ -7,6 +7,10 @@ TagManager:
   - SampleBottle
   - IndicatorBottle
   - TitrantBottle
+  - StirRod
+  - KalkBottle
+  - WaterBottle
+  - StirZone
   layers:
   - Default
   - TransparentFX
