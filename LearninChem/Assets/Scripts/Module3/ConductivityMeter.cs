@@ -27,7 +27,6 @@ public class ConductivityMeter : MonoBehaviour
         Instance = this;
         if (meterUI != null && meterUI.rootVisualElement != null)
         {
-            // DE FIX: Verander de zoekterm naar jouw label-naam
             displayLabel = meterUI.rootVisualElement.Q<Label>("ConductivityText");
             
             if (displayLabel != null)
@@ -36,7 +35,6 @@ public class ConductivityMeter : MonoBehaviour
             }
             else
             {
-                // Extra vangnet voor de toekomst
                 Debug.LogError("<color=red>[ConductivityMeter]</color> Label 'ConductivityText' niet gevonden in de UXML!");
             }
         }
@@ -44,7 +42,6 @@ public class ConductivityMeter : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // Alleen starten als we nog niet gemeten hebben en de zone de juiste tag heeft
         if (hasMeasured || isMeasuring) return;
 
         if (other.CompareTag(targetTag))
@@ -58,7 +55,6 @@ public class ConductivityMeter : MonoBehaviour
         isMeasuring = true;
         timer = 0f;
         
-        // Genereer de geheime eindwaarde (bijv. 412)
         finalValue = Random.Range(minConductivity, maxConductivity + 1);
         Debug.Log($"<color=cyan>[ConductivityMeter]</color> Elektrode in vloeistof! Doelwaarde wordt: {finalValue}");
     }
@@ -71,13 +67,11 @@ public class ConductivityMeter : MonoBehaviour
 
             if (timer < measurementDuration)
             {
-                // Fluctueer wild rondom de eindwaarde (simuleert het zoeken naar een stabiele meting)
                 int randomFluctuation = finalValue + Random.Range(-25, 25);
                 if (displayLabel != null) displayLabel.text = $"{randomFluctuation} µS/cm";
             }
             else
             {
-                // De 3 seconden zijn om! Zet de definitieve waarde vast.
                 isMeasuring = false;
                 hasMeasured = true;
                 
@@ -85,7 +79,6 @@ public class ConductivityMeter : MonoBehaviour
                 
                 Debug.Log("<color=green>[ConductivityMeter]</color> Meting gestabiliseerd!");
                 
-                // Vertel de manager dat de elektrode correct is gebruikt
                 if (UniversalProcedureManager.Instance != null)
                 {
                     UniversalProcedureManager.Instance.OnActionTriggered("InsertProbe");

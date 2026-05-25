@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.UIElements; // Vergeet deze niet, nodig voor UI Toolkit!
+using UnityEngine.UIElements;
 
 public class UniversalProcedureManager : MonoBehaviour
 {
@@ -9,8 +9,13 @@ public class UniversalProcedureManager : MonoBehaviour
     public ModuleData activeModule;
     
     [Header("UI Reference")]
-    public UIDocument dashboardUI; // Koppel hier je dashboard aan in de Inspector
+    public UIDocument dashboardUI;
     private VisualElement inputSection;
+    private Button toMainMenuBtn;
+
+    [Header("VR Player & Spawnpoint")]
+    public Transform vrPlayer;
+    public Transform spawnPoint;
     
     private int currentStepIndex = 0;
     private bool isModuleActive = false; 
@@ -22,11 +27,19 @@ public class UniversalProcedureManager : MonoBehaviour
 
     void Start()
     {
-        // Zoek de InputSection op in de UI Toolkit zodra de game start
         if (dashboardUI != null && dashboardUI.rootVisualElement != null)
         {
-            inputSection = dashboardUI.rootVisualElement.Q<VisualElement>("InputSection");
-            ShowInputPanel(false); // Zorg dat het standaard verborgen is
+            var root = dashboardUI.rootVisualElement;
+            inputSection = root.Q<VisualElement>("InputSection");
+            
+            toMainMenuBtn = root.Q<Button>("ToMainMenuBtn");
+            if (toMainMenuBtn != null)
+            {
+                toMainMenuBtn.clicked += ReturnToMainMenu;
+                toMainMenuBtn.style.display = DisplayStyle.None;
+            }
+
+            ShowInputPanel(false);
         }
     }
 
@@ -35,6 +48,9 @@ public class UniversalProcedureManager : MonoBehaviour
         activeModule = module;
         currentStepIndex = 0;
         isModuleActive = true; 
+        
+        if (toMainMenuBtn != null) toMainMenuBtn.style.display = DisplayStyle.None;
+        
         PrintCurrentStep();
     }
 
@@ -54,10 +70,10 @@ public class UniversalProcedureManager : MonoBehaviour
             if (currentStepIndex >= activeModule.stepActionIDs.Length)
             {
                 Debug.Log("<color=cyan>Module Voltooid!</color> Goed gewerkt!");
-                
-                // Zorg dat het invoerveld verdwijnt op het eindscherm!
                 ShowInputPanel(false); 
                 
+                if (toMainMenuBtn != null) toMainMenuBtn.style.display = DisplayStyle.Flex;
+
                 if (PPEDashboardTester.Instance != null)
                 {
                     PPEDashboardTester.Instance.ShowModuleComplete();
@@ -71,8 +87,6 @@ public class UniversalProcedureManager : MonoBehaviour
         else
         {
             string hint = activeModule.stepDescriptions[currentStepIndex];
-            Debug.Log($"<color=red>Niet correct!</color> Hint: {hint}");
-            
             if (PPEDashboardTester.Instance != null)
             {
                 PPEDashboardTester.Instance.ShowFailure($"Let op! Je moet eerst dit doen: {hint}");
@@ -80,22 +94,56 @@ public class UniversalProcedureManager : MonoBehaviour
         }
     }
 
-    public void ResetSimulation()
+    private void ReturnToMainMenu()
     {
         currentStepIndex = 0;
-        isModuleActive = false; 
-        
-        ShowInputPanel(false); // Verberg de invoer bij een reset
+        isModuleActive = false;
+        if (toMainMenuBtn != null) toMainMenuBtn.style.display = DisplayStyle.None;
 
         ResettableProp[] allProps = FindObjectsByType<ResettableProp>(FindObjectsSortMode.None);
         foreach (ResettableProp prop in allProps)
         {
             prop.ResetToHome();
         }
-
         if (TitrationController.Instance != null) TitrationController.Instance.ResetLiquid();
 
-        Debug.Log("<color=magenta>Simulatie is volledig gereset!</color>");
+        if (vrPlayer != null && spawnPoint != null)
+        {
+            CharacterController cc = vrPlayer.GetComponent<CharacterController>();
+            if (cc != null) cc.enabled = false;
+
+            vrPlayer.position = spawnPoint.position;
+            vrPlayer.rotation = spawnPoint.rotation;
+
+            if (cc != null) cc.enabled = true;
+            Debug.Log("<color=green>[Teleport]</color> Speler teruggezet naar spawnpoint.");
+        }
+
+        MainMenuController mainMenu = FindFirstObjectByType<MainMenuController>();
+        if (mainMenu != null)
+        {
+            mainMenu.ShowMainMenu();
+        }
+
+        if (PPEDashboardTester.Instance != null)
+        {
+             PPEDashboardTester.Instance.ResetDashboardVisuals(); 
+        }
+    }
+
+    public void ResetSimulation()
+    {
+        currentStepIndex = 0;
+        isModuleActive = false; 
+        ShowInputPanel(false);
+        if (toMainMenuBtn != null) toMainMenuBtn.style.display = DisplayStyle.None;
+
+        ResettableProp[] allProps = FindObjectsByType<ResettableProp>(FindObjectsSortMode.None);
+        foreach (ResettableProp prop in allProps)
+        {
+            prop.ResetToHome();
+        }
+        if (TitrationController.Instance != null) TitrationController.Instance.ResetLiquid();
     }
 
     void PrintCurrentStep()
@@ -106,14 +154,11 @@ public class UniversalProcedureManager : MonoBehaviour
         string currentInstructions = activeModule.stepDescriptions[currentStepIndex];
         string currentInfo = activeModule.stepInfo[currentStepIndex]; 
 
-        Debug.Log($"<color=yellow>Nieuwe Taak:</color> {currentInstructions}");
-
         if (PPEDashboardTester.Instance != null)
         {
             PPEDashboardTester.Instance.UpdateTaskPanel(currentInstructions, currentInfo);
         }
 
-        // Check of de huidige stap de validatie-stap is, en toon/verberg het nummerblok
         if (currentTargetID == "SubmitValue")
         {
             ShowInputPanel(true);
@@ -124,7 +169,6 @@ public class UniversalProcedureManager : MonoBehaviour
         }
     }
 
-    // Handige helper functie om de zichtbaarheid veilig te schakelen
     private void ShowInputPanel(bool show)
     {
         if (inputSection != null)

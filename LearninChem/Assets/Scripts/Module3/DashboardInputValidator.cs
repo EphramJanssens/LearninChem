@@ -18,21 +18,17 @@ public class DashboardInputValidator : MonoBehaviour
         {
             var root = dashboardUI.rootVisualElement;
             
-            // Koppel de hoofd-container en het veld
             inputSection = root.Q<VisualElement>("InputSection");
             inputField = root.Q<TextField>("ConductivityInput");
 
-            // Dubbele check: Forceer onzichtbaarheid bij de opstart
             if (inputSection != null) inputSection.style.display = DisplayStyle.None;
 
-            // Koppel de C (Clear) en OK (Enter) knoppen
             btnClear = root.Q<Button>("BtnClear");
             if (btnClear != null) btnClear.clicked += () => { if (inputField != null) inputField.value = ""; };
 
             btnEnter = root.Q<Button>("BtnEnter");
             if (btnEnter != null) btnEnter.clicked += OnSubmitClicked;
 
-            // Koppel de nummers 0 t/m 9
             for (int i = 0; i < 10; i++)
             {
                 int number = i; 
@@ -47,7 +43,6 @@ public class DashboardInputValidator : MonoBehaviour
 
     void Update()
     {
-        // Toon de hele Numpad-sectie pas zodra de meter een waarde heeft
         if (ConductivityMeter.Instance != null && ConductivityMeter.Instance.finalValue > 0)
         {
             if (inputSection != null && inputSection.style.display == DisplayStyle.None)
@@ -78,13 +73,12 @@ public class DashboardInputValidator : MonoBehaviour
                     UniversalProcedureManager.Instance.OnActionTriggered("SubmitValue");
                 }
                 
-                // Verberg het hele blok weer als het klaar is
                 if (inputSection != null) inputSection.style.display = DisplayStyle.None;
             }
             else
             {
                 Debug.Log("<color=red>[Validator]</color> Foutieve waarde ingevoerd!");
-                inputField.value = ""; // Maak het veld leeg
+                inputField.value = "";
             }
         }
     }
