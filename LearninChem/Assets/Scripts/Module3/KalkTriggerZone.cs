@@ -16,9 +16,18 @@ public class KalkTriggerZone : MonoBehaviour
         {
             if (targetScale != null)
             {
-                Debug.Log("<color=cyan>[KalkTrigger]</color> Kalk gedetecteerd! Update de weegschaal.");
-                targetScale.AddKalk();
-                hasAddedKalk = true;
+                Debug.Log("<color=cyan>[KalkTrigger]</color> Kalk gedetecteerd! Vraag aan de weegschaal of dit mag...");
+                
+                bool isSuccesvol = targetScale.AddKalk();
+                
+                if (isSuccesvol)
+                {
+                    hasAddedKalk = true;
+                }
+                else
+                {
+                    Debug.Log("<color=yellow>[KalkTrigger]</color> Toevoegen geweigerd. Trigger blijft open voor een nieuwe poging.");
+                }
             }
         }
     }

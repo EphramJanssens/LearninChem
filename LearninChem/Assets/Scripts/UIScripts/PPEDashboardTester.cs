@@ -1,4 +1,4 @@
-using UnityEngine;
+/* using UnityEngine;
 using UnityEngine.UIElements;
 
 public class PPEDashboardTester : MonoBehaviour
@@ -95,4 +95,26 @@ public class PPEDashboardTester : MonoBehaviour
     
         if (restartButton != null) restartButton.style.display = DisplayStyle.Flex;
     }
+
+    public void ResetDashboardVisuals()
+    {
+        var uiDocument = GetComponent<UnityEngine.UIElements.UIDocument>();
+        if (uiDocument != null && uiDocument.rootVisualElement != null)
+        {
+            var root = uiDocument.rootVisualElement;
+
+            var startMenu = root.Q<UnityEngine.UIElements.VisualElement>("StartMenuContainer");
+            var taskPanel = root.Q<UnityEngine.UIElements.VisualElement>("TaskPanelContainer");
+            var helpPanel = root.Q<UnityEngine.UIElements.VisualElement>("HelpPanel");
+            var restartBtn = root.Q<UnityEngine.UIElements.Button>("RestartBtn");
+
+            if (startMenu != null) startMenu.style.display = UnityEngine.UIElements.DisplayStyle.Flex;
+            if (taskPanel != null) taskPanel.style.display = UnityEngine.UIElements.DisplayStyle.None;
+            if (helpPanel != null) helpPanel.style.display = UnityEngine.UIElements.DisplayStyle.None;
+            if (restartBtn != null) restartBtn.style.display = UnityEngine.UIElements.DisplayStyle.None;
+            
+            Debug.Log("<color=white>[Dashboard]</color> Visuals zijn gereset voor het hoofdmenu.");
+        }
+    }
 }
+*/

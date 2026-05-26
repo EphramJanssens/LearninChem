@@ -22,11 +22,11 @@
         </ui:VisualElement>
         
         <ui:VisualElement name="TaskPanelContainer" style="display: none; flex-grow: 1; flex-direction: column; align-items: center; justify-content: center; padding: 40px;">
-            
             <ui:Label text="Instructie komt hier..." name="InstructionText" style="color: rgb(255, 255, 255); font-size: 32px; -unity-font-style: bold; margin-bottom: 20px; white-space: normal; -unity-text-align: middle-center; flex-shrink: 0;"/>
             
             <ui:VisualElement style="background-color: rgb(26, 29, 36); border-radius: 5px; border-left-color: rgb(52, 152, 219); border-left-width: 5px; padding: 20px; width: 80%; max-width: 600px;">
                 <ui:Label text="Extra informatie over de PBM komt hier..." name="InfoText" style="color: rgb(200, 200, 200); font-size: 22px; white-space: normal;"/>
+                <ui:Button name="BtnCancelModule" text="Module Afbreken" style="background-color: rgb(192, 57, 43); color: white; border-radius: 5px; padding: 10px; margin-top: 20px; font-size: 18px;" />
             </ui:VisualElement>
             
             <ui:VisualElement name="HelpPanel" style="display: none; background-color: rgb(139, 0, 0); border-radius: 5px; padding: 20px; margin-top: 30px; width: 80%; max-width: 600px;">
@@ -63,6 +63,8 @@
             </ui:VisualElement>
             
             <ui:Button text="Opnieuw Beginnen" name="RestartBtn" style="display: none; background-color: rgb(46, 204, 113); margin-top: 20px; width: 300px; height: 50px; font-size: 24px; border-radius: 5px; color: white; border-width: 0;" focusable="false"/>
+
+            <ui:Button text="Terug naar Hoofdmenu" name="ToMainMenuBtn" style="display: none; background-color: #34495E; margin-top: 10px; width: 300px; height: 50px; font-size: 24px; border-radius: 5px; color: white; border-width: 0;" focusable="false"/>             
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

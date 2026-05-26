@@ -60,17 +60,17 @@ public class WeighingScale : MonoBehaviour
         }
     }
 
-    public void AddKalk()
+    public bool AddKalk()
     {
-        if (!hasBeaker) return;
+        if (!hasBeaker) return false;
 
         if (!isTared)
         {
-            if (PPEDashboardTester.Instance != null)
+            if (UniversalProcedureManager.Instance != null)
             {
-                PPEDashboardTester.Instance.ShowFailure("Fout! Je bent vergeten de weegschaal te tarreren. Je weegt nu het glas mee!");
+                UniversalProcedureManager.Instance.ShowGlobalFailure("Fout! Je bent vergeten de weegschaal te tarreren. Je weegt nu het glas mee!");
             }
-            return; 
+            return false;
         }
 
         currentWeight = targetKalkWeight;
@@ -80,6 +80,8 @@ public class WeighingScale : MonoBehaviour
         {
             UniversalProcedureManager.Instance.OnActionTriggered("AddKalk");
         }
+        
+        return true;
     }
 
     private void UpdateScreen()
@@ -88,5 +90,14 @@ public class WeighingScale : MonoBehaviour
         {
             displayLabel.text = currentWeight.ToString("F2") + " g";
         }
+    }
+
+    public void ResetScale()
+    {
+        currentWeight = 0.00f;
+        hasBeaker = false;
+        isTared = false;
+        UpdateScreen();
+        Debug.Log("<color=white>[WeighingScale]</color> Logica van de weegschaal volledig gereset.");
     }
 }
