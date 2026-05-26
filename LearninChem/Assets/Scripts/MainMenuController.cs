@@ -26,10 +26,14 @@ public class MainMenuController : MonoBehaviour
             Button btnMod1 = root.Q<Button>("BtnModule1");
             Button btnMod2 = root.Q<Button>("BtnModule2");
             Button btnMod3 = root.Q<Button>("BtnModule3");
+            
+            Button btnExit = root.Q<Button>("BtnExitApp");
 
             if (btnMod1 != null) btnMod1.clicked += () => StartSelectedModule(module1Data);
             if (btnMod2 != null) btnMod2.clicked += () => StartSelectedModule(module2Data);
             if (btnMod3 != null) btnMod3.clicked += () => StartSelectedModule(module3Data);
+            
+            if (btnExit != null) btnExit.clicked += QuitApplication;
         }
     }
 
@@ -57,5 +61,16 @@ public class MainMenuController : MonoBehaviour
         if (mainMenuContainer != null) mainMenuContainer.style.display = DisplayStyle.Flex;
         
         if (uiCollider != null) uiCollider.enabled = true;
+    }
+
+    private void QuitApplication()
+    {
+        Debug.Log("<color=red>[MainMenu]</color> Applicatie wordt afgesloten...");
+        
+        Application.Quit();
+        
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
     }
 }

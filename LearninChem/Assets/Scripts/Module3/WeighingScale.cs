@@ -62,7 +62,7 @@ public class WeighingScale : MonoBehaviour
 
     public bool AddKalk()
     {
-        if (!hasBeaker) return false; // Mislukt: geen beker
+        if (!hasBeaker) return false;
 
         if (!isTared)
         {
@@ -70,7 +70,7 @@ public class WeighingScale : MonoBehaviour
             {
                 UniversalProcedureManager.Instance.ShowGlobalFailure("Fout! Je bent vergeten de weegschaal te tarreren. Je weegt nu het glas mee!");
             }
-            return false; // Mislukt: niet getarreerd. Geef 'false' terug aan de triggerzone!
+            return false;
         }
 
         currentWeight = targetKalkWeight;
@@ -81,7 +81,7 @@ public class WeighingScale : MonoBehaviour
             UniversalProcedureManager.Instance.OnActionTriggered("AddKalk");
         }
         
-        return true; // Succes! Geef 'true' terug.
+        return true;
     }
 
     private void UpdateScreen()
@@ -92,7 +92,6 @@ public class WeighingScale : MonoBehaviour
         }
     }
 
-    // NIEUW: Wist het geheugen van de weegschaal bij een herstart
     public void ResetScale()
     {
         currentWeight = 0.00f;

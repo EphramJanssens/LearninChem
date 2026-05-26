@@ -38,11 +38,9 @@ public class UniversalProcedureManager : MonoBehaviour
         currentStepIndex = 0;
         isModuleActive = true; 
 
-        // 1. Reset alle dashboards én alle fysieke objecten op de tafels!
         ResetAllDashboards();
-        ResetPhysicalProps(); // <--- OPGELOST: Fysieke objecten worden nu ook bij herstart gereset!
+        ResetPhysicalProps();
         
-        // 2. Bepaal welk dashboard bij welke module hoort
         if (module.name.Contains("Module1") || module.moduleTitle.Contains("PBM")) currentActiveDashboard = dashboardModule1;
         else if (module.name.Contains("Module2") || module.moduleTitle.Contains("Titratie")) currentActiveDashboard = dashboardModule2;
         else currentActiveDashboard = dashboardModule3;
@@ -99,50 +97,42 @@ public class UniversalProcedureManager : MonoBehaviour
         if (dashboardModule3 != null) dashboardModule3.DeactivateDashboard();
     }
 
-    // NIEUWE CENTRALE FUNCTIE: Reset alle fysieke laboratorium objecten
     private void ResetPhysicalProps()
     {
-        // 1. Reset alle objecten met het 'ResettableProp' script (positie/rotatie)
         ResettableProp[] allProps = FindObjectsByType<ResettableProp>(FindObjectsSortMode.None);
         foreach (ResettableProp prop in allProps)
         {
             prop.ResetToHome();
         }
 
-        // 2. Reset de titratievloeistof (Module 2)
         if (TitrationController.Instance != null)
         {
             TitrationController.Instance.ResetLiquid();
         }
 
-        // 3. Reset de roer-detectors (Module 3) zodat de timer weer op 0 springt!
         StirDetector[] allStirDetectors = FindObjectsByType<StirDetector>(FindObjectsSortMode.None);
         foreach (StirDetector stir in allStirDetectors)
         {
             stir.ResetStirring();
         }
 
-        // --- NIEUW: 4. Reset de KalkTriggerZone ---
         KalkTriggerZone[] allKalkTriggers = FindObjectsByType<KalkTriggerZone>(FindObjectsSortMode.None);
         foreach (KalkTriggerZone kalk in allKalkTriggers)
         {
             kalk.ResetTrigger();
         }
 
-        // --- NIEUW: 5. Reset de Geleidbaarheidsmeter (Module 3) ---
         if (ConductivityMeter.Instance != null)
         {
             ConductivityMeter.Instance.ResetMeter();
         }
 
-        // --- NIEUW: 6. Reset het Numpad invoerveld (Module 3) ---
         DashboardInputValidator[] allValidators = FindObjectsByType<DashboardInputValidator>(FindObjectsSortMode.None);
         foreach (DashboardInputValidator validator in allValidators)
         {
             validator.ResetValidator();
         }
 
-        // --- NIEUW: 7. Reset de Weegschaal Logica (Module 3) ---
         WeighingScale[] allScales = FindObjectsByType<WeighingScale>(FindObjectsSortMode.None);
         foreach (WeighingScale scale in allScales)
         {
@@ -158,9 +148,8 @@ public class UniversalProcedureManager : MonoBehaviour
         isModuleActive = false;
 
         ResetAllDashboards();
-        ResetPhysicalProps(); // Schone herstart voor het hoofdmenu
+        ResetPhysicalProps();
 
-        // 1. Teleportatie van de VR-speler
         if (vrPlayer != null && spawnPoint != null)
         {
             CharacterController cc = vrPlayer.GetComponent<CharacterController>();
@@ -172,7 +161,6 @@ public class UniversalProcedureManager : MonoBehaviour
             if (cc != null) cc.enabled = true;
         }
 
-        // 2. Toon het hoofdmenu weer
         MainMenuController mainMenu = FindFirstObjectByType<MainMenuController>();
         if (mainMenu != null)
         {

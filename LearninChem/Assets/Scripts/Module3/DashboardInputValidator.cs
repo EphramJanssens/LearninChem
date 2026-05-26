@@ -12,8 +12,7 @@ public class DashboardInputValidator : MonoBehaviour
     private Button btnClear;
     private Button[] numButtons = new Button[10];
 
-    // OPGELOST: We definiëren hier een mooie donkere kleur voor de ingevoerde cijfers
-    private Color darkTextColor = new Color(0.1f, 0.11f, 0.14f); // Dit is rgb(26, 29, 36), passend bij je UI
+    private Color darkTextColor = new Color(0.1f, 0.11f, 0.14f);
 
     void OnEnable()
     {
@@ -26,7 +25,6 @@ public class DashboardInputValidator : MonoBehaviour
 
             if (inputSection != null) inputSection.style.display = DisplayStyle.None;
 
-            // Zorg dat de tekstkleur vanaf de allereerste seconde mooi donker is inside het witte vlak
             if (inputField != null)
             {
                 inputField.style.color = new StyleColor(darkTextColor);
@@ -97,7 +95,6 @@ public class DashboardInputValidator : MonoBehaviour
         if (inputField != null)
         {
             inputField.value = "";
-            // FIX: Zet de tekstkleur hier weer netjes terug naar de donkere kleur in plaats van wit!
             inputField.style.color = new StyleColor(darkTextColor); 
         }
 

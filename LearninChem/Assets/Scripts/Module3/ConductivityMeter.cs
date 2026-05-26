@@ -91,7 +91,7 @@ public class ConductivityMeter : MonoBehaviour
         isMeasuring = false;
         hasMeasured = false;
         timer = 0f;
-        finalValue = 0; // FIX: Wis de gemeten waarde uit het geheugen!
+        finalValue = 0;
         if (displayLabel != null) displayLabel.text = "--- µS/cm";
     }
 }

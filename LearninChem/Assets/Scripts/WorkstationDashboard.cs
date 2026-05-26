@@ -12,9 +12,9 @@ public class WorkstationDashboard : MonoBehaviour
     private VisualElement helpPanel;
     private Label helpMessage;
 
-    // Nieuwe referenties voor de knoppen binnen DIT dashboard
     private Button restartBtn;
     private Button toMainMenuBtn;
+    private Button cancelBtn;
 
     private bool uiIsInitialized = false;
 
@@ -39,13 +39,15 @@ public class WorkstationDashboard : MonoBehaviour
             helpPanel = root.Q<VisualElement>("HelpPanel");
             helpMessage = root.Q<Label>("HelpMessage");
 
-            // Zoek de knoppen op in de UXML van dit specifieke bord
             restartBtn = root.Q<Button>("RestartBtn");
             toMainMenuBtn = root.Q<Button>("ToMainMenuBtn");
+            
+            cancelBtn = root.Q<Button>("BtnCancelModule");
 
-            // Koppel de klik-events direct aan de juiste functies
             if (restartBtn != null) restartBtn.clicked += OnRestartClicked;
             if (toMainMenuBtn != null) toMainMenuBtn.clicked += OnToMainMenuClicked;
+            
+            if (cancelBtn != null) cancelBtn.clicked += OnToMainMenuClicked; 
 
             uiIsInitialized = true;
         }
@@ -62,9 +64,10 @@ public class WorkstationDashboard : MonoBehaviour
         if (taskPanelContainer != null) taskPanelContainer.style.display = DisplayStyle.Flex;
         if (helpPanel != null) helpPanel.style.display = DisplayStyle.None;
 
-        // Zorg dat de eindknoppen onzichtbaar zijn tijdens het doorlopen van de stappen
         if (restartBtn != null) restartBtn.style.display = DisplayStyle.None;
         if (toMainMenuBtn != null) toMainMenuBtn.style.display = DisplayStyle.None;
+        
+        if (cancelBtn != null) cancelBtn.style.display = DisplayStyle.Flex;
 
         if (headerLabel != null) headerLabel.text = title;
         if (instructionLabel != null) instructionLabel.text = instruction;
@@ -86,9 +89,10 @@ public class WorkstationDashboard : MonoBehaviour
         if (instructionLabel != null) instructionLabel.text = "Module Voltooid! Goed gewerkt!";
         if (infoLabel != null) infoLabel.text = "Gebruik de knoppen hieronder om een actie te kiezen.";
 
-        // GEFIXID: Maak de knoppen nu zichtbaar op het dashboard!
         if (restartBtn != null) restartBtn.style.display = DisplayStyle.Flex;
         if (toMainMenuBtn != null) toMainMenuBtn.style.display = DisplayStyle.Flex;
+        
+        if (cancelBtn != null) cancelBtn.style.display = DisplayStyle.None;
     }
 
     public void ResetDashboard()
@@ -100,6 +104,7 @@ public class WorkstationDashboard : MonoBehaviour
         
         if (restartBtn != null) restartBtn.style.display = DisplayStyle.None;
         if (toMainMenuBtn != null) toMainMenuBtn.style.display = DisplayStyle.None;
+        if (cancelBtn != null) cancelBtn.style.display = DisplayStyle.None;
 
         Collider uiCollider = GetComponent<Collider>();
         if (uiCollider != null) uiCollider.enabled = true;
@@ -114,12 +119,12 @@ public class WorkstationDashboard : MonoBehaviour
         
         if (restartBtn != null) restartBtn.style.display = DisplayStyle.None;
         if (toMainMenuBtn != null) toMainMenuBtn.style.display = DisplayStyle.None;
+        if (cancelBtn != null) cancelBtn.style.display = DisplayStyle.None;
 
         Collider uiCollider = GetComponent<Collider>();
         if (uiCollider != null) uiCollider.enabled = false;
     }
 
-    // Knop-functionaliteit 1: De huidige actieve module opnieuw opstarten
     private void OnRestartClicked()
     {
         if (UniversalProcedureManager.Instance != null && UniversalProcedureManager.Instance.activeModule != null)
@@ -129,12 +134,11 @@ public class WorkstationDashboard : MonoBehaviour
         }
     }
 
-    // Knop-functionaliteit 2: Volledig terugkeren naar het hoofdmenu en speler teleporten
     private void OnToMainMenuClicked()
     {
         if (UniversalProcedureManager.Instance != null)
         {
-            Debug.Log("<color=orange>[Dashboard]</color> Terugkeren naar hoofdmenu getriggerd...");
+            Debug.Log("<color=orange>[Dashboard]</color> Terugkeren/Afbreken naar hoofdmenu getriggerd...");
             UniversalProcedureManager.Instance.ReturnToMainMenu();
         }
     }

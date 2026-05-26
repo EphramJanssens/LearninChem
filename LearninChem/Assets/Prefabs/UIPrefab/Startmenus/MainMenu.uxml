@@ -8,5 +8,6 @@
             <ui:Button name="BtnModule2" text="Module 2: Titratie" style="width: 320px; height: 90px; margin: 15px; white-space: normal; font-size: 24px; -unity-font-style: bold; background-color: rgb(52, 152, 219); color: white; border-radius: 8px; -unity-font-definition: resource(&quot;Fonts &amp; Materials/Roboto-Medium&quot;); border-left-color: rgb(52, 152, 219); border-right-color: rgb(52, 152, 219); border-top-color: rgb(52, 152, 219); border-bottom-color: rgb(52, 152, 219);"/>
             <ui:Button name="BtnModule3" text="Module 3: Geleidbaarheids meting" style="width: 320px; height: 90px; margin: 15px; white-space: normal; font-size: 24px; -unity-font-style: bold; background-color: rgb(52, 152, 219); color: white; border-radius: 8px; -unity-font-definition: resource(&quot;Fonts &amp; Materials/Roboto-Medium&quot;); border-left-color: rgb(52, 152, 219); border-right-color: rgb(52, 152, 219); border-top-color: rgb(52, 152, 219); border-bottom-color: rgb(52, 152, 219);"/>
         </ui:VisualElement>
+        <ui:Button name="BtnExitApp" text="Applicatie Afsluiten" style="width: 250px; height: 60px; margin-top: 50px; font-size: 20px; -unity-font-style: bold; background-color: rgb(192, 57, 43); color: white; border-radius: 8px; align-self: center;"/>
     </ui:VisualElement>
 </ui:UXML>
