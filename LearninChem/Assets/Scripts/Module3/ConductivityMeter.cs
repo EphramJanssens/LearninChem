@@ -10,7 +10,7 @@ public class ConductivityMeter : MonoBehaviour
     private Label displayLabel;
 
     [Header("Instellingen")]
-    public string targetTag = "StirZone"; // We kunnen de StirZone uit de beker als water-detector gebruiken!
+    public string targetTag = "StirZone"; 
     public float measurementDuration = 3.0f;
     public int minConductivity = 390;
     public int maxConductivity = 430;
@@ -19,7 +19,6 @@ public class ConductivityMeter : MonoBehaviour
     private bool hasMeasured = false;
     private float timer = 0f;
     
-    // Deze waarde halen we straks op met het Dashboard
     public int finalValue { get; private set; } 
 
     void Awake()
@@ -92,6 +91,7 @@ public class ConductivityMeter : MonoBehaviour
         isMeasuring = false;
         hasMeasured = false;
         timer = 0f;
+        finalValue = 0; // FIX: Wis de gemeten waarde uit het geheugen!
         if (displayLabel != null) displayLabel.text = "--- µS/cm";
     }
 }

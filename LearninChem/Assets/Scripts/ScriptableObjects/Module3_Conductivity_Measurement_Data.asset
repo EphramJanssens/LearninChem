@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a4baab0f7c307b44b4dfb87cb7e74e1, type: 3}
   m_Name: Module3_Conductivity_Measurement_Data
   m_EditorClassIdentifier: Assembly-CSharp::ModuleData
-  moduleName: Geleidbaarheids meeting
+  moduleTitle: Geleidbaarheid meten
   stepActionIDs:
   - PlaceBeakerOnScale
   - TareScale

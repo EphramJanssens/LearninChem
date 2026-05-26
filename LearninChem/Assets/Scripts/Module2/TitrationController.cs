@@ -85,9 +85,11 @@ public class TitrationController : MonoBehaviour
                     hasFailedLog = true;
                 }
                 
-                if (PPEDashboardTester.Instance != null)
+                // --- DE FIX ZIT HIER ---
+                // We sturen de foutmelding nu netjes naar de centrale manager
+                if (UniversalProcedureManager.Instance != null)
                 {
-                    PPEDashboardTester.Instance.ShowFailure("Te ver getitreerd! Je hebt te veel zwavelzuur toegevoegd. Druk op Opnieuw Beginnen.");
+                    UniversalProcedureManager.Instance.ShowGlobalFailure("Te ver getitreerd! Je hebt te veel zwavelzuur toegevoegd. Keer terug naar het hoofdmenu om opnieuw te beginnen.");
                 }
             }
         }

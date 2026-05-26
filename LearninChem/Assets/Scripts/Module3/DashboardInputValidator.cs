@@ -12,6 +12,9 @@ public class DashboardInputValidator : MonoBehaviour
     private Button btnClear;
     private Button[] numButtons = new Button[10];
 
+    // OPGELOST: We definiëren hier een mooie donkere kleur voor de ingevoerde cijfers
+    private Color darkTextColor = new Color(0.1f, 0.11f, 0.14f); // Dit is rgb(26, 29, 36), passend bij je UI
+
     void OnEnable()
     {
         if (dashboardUI != null && dashboardUI.rootVisualElement != null)
@@ -22,6 +25,12 @@ public class DashboardInputValidator : MonoBehaviour
             inputField = root.Q<TextField>("ConductivityInput");
 
             if (inputSection != null) inputSection.style.display = DisplayStyle.None;
+
+            // Zorg dat de tekstkleur vanaf de allereerste seconde mooi donker is inside het witte vlak
+            if (inputField != null)
+            {
+                inputField.style.color = new StyleColor(darkTextColor);
+            }
 
             btnClear = root.Q<Button>("BtnClear");
             if (btnClear != null) btnClear.clicked += () => { if (inputField != null) inputField.value = ""; };
@@ -80,6 +89,21 @@ public class DashboardInputValidator : MonoBehaviour
                 Debug.Log("<color=red>[Validator]</color> Foutieve waarde ingevoerd!");
                 inputField.value = "";
             }
+        }
+    }
+
+    public void ResetValidator()
+    {
+        if (inputField != null)
+        {
+            inputField.value = "";
+            // FIX: Zet de tekstkleur hier weer netjes terug naar de donkere kleur in plaats van wit!
+            inputField.style.color = new StyleColor(darkTextColor); 
+        }
+
+        if (inputSection != null)
+        {
+            inputSection.style.display = DisplayStyle.None;
         }
     }
 }

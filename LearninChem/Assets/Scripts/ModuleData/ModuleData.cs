@@ -1,11 +1,17 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ModuleData", menuName = "Scriptable Objects/ModuleData")]
+[CreateAssetMenu(fileName = "NewModuleData", menuName = "Scriptable Objects/ModuleData")]
 public class ModuleData : ScriptableObject
 {
-    public string moduleName;
+    [Header("Module Instellingen")]
+    public string moduleTitle;
+    
+    [Header("Stappen & Logica")]
     public string[] stepActionIDs;
+    
+    [TextArea(2, 5)]
     public string[] stepDescriptions;
+    
     [TextArea(3, 10)]
     public string[] stepInfo;
 }

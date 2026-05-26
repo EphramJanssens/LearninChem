@@ -25,7 +25,7 @@ public class StirDetector : MonoBehaviour
                 if (currentStirTime >= requiredStirTime)
                 {
                     isStirringComplete = true;
-                    Debug.Log("<color=green>[StirDetector]</color> Roeren voltooid!");
+                    Debug.Log("<color=green>[StirDetector]</color> Roeren voltooid! Signaal 'StirSolution' wordt nu naar de manager gestuurd.");
                     
                     if (UniversalProcedureManager.Instance != null)
                     {
@@ -33,9 +33,14 @@ public class StirDetector : MonoBehaviour
                     }
                 }
             }
-            else
-            {
-            }
         }
+    }
+
+    // Roep deze aan wanneer de speler terugkeert naar het hoofdmenu of de beker leeggooit
+    public void ResetStirring()
+    {
+        currentStirTime = 0f;
+        isStirringComplete = false;
+        Debug.Log("<color=white>[StirDetector]</color> Detector is gereset en klaar voor een nieuwe sessie.");
     }
 }

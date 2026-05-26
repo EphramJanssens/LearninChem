@@ -7,15 +7,17 @@ public class UniversalProcedureManager : MonoBehaviour
     
     [Header("Active Module Blueprint")]
     public ModuleData activeModule;
-    
-    [Header("UI Reference")]
-    public UIDocument dashboardUI;
-    private VisualElement inputSection;
-    private Button toMainMenuBtn;
+
+    [Header("Gekoppelde Werkplekken")]
+    public WorkstationDashboard dashboardModule1;
+    public WorkstationDashboard dashboardModule2;
+    public WorkstationDashboard dashboardModule3;
+
+    private WorkstationDashboard currentActiveDashboard;
 
     [Header("VR Player & Spawnpoint")]
-    public Transform vrPlayer;
-    public Transform spawnPoint;
+    public Transform vrPlayer;       
+    public Transform spawnPoint;     
     
     private int currentStepIndex = 0;
     private bool isModuleActive = false; 
@@ -27,20 +29,7 @@ public class UniversalProcedureManager : MonoBehaviour
 
     void Start()
     {
-        if (dashboardUI != null && dashboardUI.rootVisualElement != null)
-        {
-            var root = dashboardUI.rootVisualElement;
-            inputSection = root.Q<VisualElement>("InputSection");
-            
-            toMainMenuBtn = root.Q<Button>("ToMainMenuBtn");
-            if (toMainMenuBtn != null)
-            {
-                toMainMenuBtn.clicked += ReturnToMainMenu;
-                toMainMenuBtn.style.display = DisplayStyle.None;
-            }
-
-            ShowInputPanel(false);
-        }
+        ResetAllDashboards();
     }
 
     public void StartModule(ModuleData module)
@@ -48,16 +37,22 @@ public class UniversalProcedureManager : MonoBehaviour
         activeModule = module;
         currentStepIndex = 0;
         isModuleActive = true; 
+
+        // 1. Reset alle dashboards én alle fysieke objecten op de tafels!
+        ResetAllDashboards();
+        ResetPhysicalProps(); // <--- OPGELOST: Fysieke objecten worden nu ook bij herstart gereset!
         
-        if (toMainMenuBtn != null) toMainMenuBtn.style.display = DisplayStyle.None;
-        
+        // 2. Bepaal welk dashboard bij welke module hoort
+        if (module.name.Contains("Module1") || module.moduleTitle.Contains("PBM")) currentActiveDashboard = dashboardModule1;
+        else if (module.name.Contains("Module2") || module.moduleTitle.Contains("Titratie")) currentActiveDashboard = dashboardModule2;
+        else currentActiveDashboard = dashboardModule3;
+
         PrintCurrentStep();
     }
 
     public void OnActionTriggered(string incomingActionID)
     {
-        if (!isModuleActive) return; 
-        if (activeModule == null) return;
+        if (!isModuleActive || activeModule == null) return;
         if (currentStepIndex >= activeModule.stepActionIDs.Length) return;
 
         string targetActionID = activeModule.stepActionIDs[currentStepIndex];
@@ -69,15 +64,8 @@ public class UniversalProcedureManager : MonoBehaviour
 
             if (currentStepIndex >= activeModule.stepActionIDs.Length)
             {
-                Debug.Log("<color=cyan>Module Voltooid!</color> Goed gewerkt!");
-                ShowInputPanel(false); 
-                
-                if (toMainMenuBtn != null) toMainMenuBtn.style.display = DisplayStyle.Flex;
-
-                if (PPEDashboardTester.Instance != null)
-                {
-                    PPEDashboardTester.Instance.ShowModuleComplete();
-                }
+                isModuleActive = false;
+                if (currentActiveDashboard != null) currentActiveDashboard.SetModuleComplete();
             }
             else
             {
@@ -87,26 +75,92 @@ public class UniversalProcedureManager : MonoBehaviour
         else
         {
             string hint = activeModule.stepDescriptions[currentStepIndex];
-            if (PPEDashboardTester.Instance != null)
-            {
-                PPEDashboardTester.Instance.ShowFailure($"Let op! Je moet eerst dit doen: {hint}");
-            }
+            ShowGlobalFailure($"Let op! Je moet eerst dit doen: {hint}");
         }
     }
 
-    private void ReturnToMainMenu()
+    void PrintCurrentStep()
     {
-        currentStepIndex = 0;
-        isModuleActive = false;
-        if (toMainMenuBtn != null) toMainMenuBtn.style.display = DisplayStyle.None;
+        if (activeModule == null || currentStepIndex >= activeModule.stepActionIDs.Length) return;
 
+        string currentInstructions = activeModule.stepDescriptions[currentStepIndex];
+        string currentInfo = activeModule.stepInfo[currentStepIndex]; 
+
+        if (currentActiveDashboard != null)
+        {
+            currentActiveDashboard.UpdateDashboard(activeModule.moduleTitle, currentInstructions, currentInfo);
+        }
+    }
+
+    private void ResetAllDashboards()
+    {
+        if (dashboardModule1 != null) dashboardModule1.DeactivateDashboard();
+        if (dashboardModule2 != null) dashboardModule2.DeactivateDashboard();
+        if (dashboardModule3 != null) dashboardModule3.DeactivateDashboard();
+    }
+
+    // NIEUWE CENTRALE FUNCTIE: Reset alle fysieke laboratorium objecten
+    private void ResetPhysicalProps()
+    {
+        // 1. Reset alle objecten met het 'ResettableProp' script (positie/rotatie)
         ResettableProp[] allProps = FindObjectsByType<ResettableProp>(FindObjectsSortMode.None);
         foreach (ResettableProp prop in allProps)
         {
             prop.ResetToHome();
         }
-        if (TitrationController.Instance != null) TitrationController.Instance.ResetLiquid();
 
+        // 2. Reset de titratievloeistof (Module 2)
+        if (TitrationController.Instance != null)
+        {
+            TitrationController.Instance.ResetLiquid();
+        }
+
+        // 3. Reset de roer-detectors (Module 3) zodat de timer weer op 0 springt!
+        StirDetector[] allStirDetectors = FindObjectsByType<StirDetector>(FindObjectsSortMode.None);
+        foreach (StirDetector stir in allStirDetectors)
+        {
+            stir.ResetStirring();
+        }
+
+        // --- NIEUW: 4. Reset de KalkTriggerZone ---
+        KalkTriggerZone[] allKalkTriggers = FindObjectsByType<KalkTriggerZone>(FindObjectsSortMode.None);
+        foreach (KalkTriggerZone kalk in allKalkTriggers)
+        {
+            kalk.ResetTrigger();
+        }
+
+        // --- NIEUW: 5. Reset de Geleidbaarheidsmeter (Module 3) ---
+        if (ConductivityMeter.Instance != null)
+        {
+            ConductivityMeter.Instance.ResetMeter();
+        }
+
+        // --- NIEUW: 6. Reset het Numpad invoerveld (Module 3) ---
+        DashboardInputValidator[] allValidators = FindObjectsByType<DashboardInputValidator>(FindObjectsSortMode.None);
+        foreach (DashboardInputValidator validator in allValidators)
+        {
+            validator.ResetValidator();
+        }
+
+        // --- NIEUW: 7. Reset de Weegschaal Logica (Module 3) ---
+        WeighingScale[] allScales = FindObjectsByType<WeighingScale>(FindObjectsSortMode.None);
+        foreach (WeighingScale scale in allScales)
+        {
+            scale.ResetScale();
+        }
+
+        Debug.Log("<color=orange>[Manager]</color> Alle fysieke laboratorium objecten en detectors zijn gereset.");
+    }
+
+    public void ReturnToMainMenu()
+    {
+        currentStepIndex = 0;
+        isModuleActive = false;
+
+        ResetAllDashboards();
+        ResetPhysicalProps(); // Schone herstart voor het hoofdmenu
+
+        // 1. Teleportatie van de VR-speler
         if (vrPlayer != null && spawnPoint != null)
         {
             CharacterController cc = vrPlayer.GetComponent<CharacterController>();
@@ -116,64 +170,25 @@ public class UniversalProcedureManager : MonoBehaviour
             vrPlayer.rotation = spawnPoint.rotation;
 
             if (cc != null) cc.enabled = true;
-            Debug.Log("<color=green>[Teleport]</color> Speler teruggezet naar spawnpoint.");
         }
 
+        // 2. Toon het hoofdmenu weer
         MainMenuController mainMenu = FindFirstObjectByType<MainMenuController>();
         if (mainMenu != null)
         {
             mainMenu.ShowMainMenu();
         }
-
-        if (PPEDashboardTester.Instance != null)
-        {
-             PPEDashboardTester.Instance.ResetDashboardVisuals(); 
-        }
     }
 
-    public void ResetSimulation()
+    public void ShowGlobalFailure(string message)
     {
-        currentStepIndex = 0;
-        isModuleActive = false; 
-        ShowInputPanel(false);
-        if (toMainMenuBtn != null) toMainMenuBtn.style.display = DisplayStyle.None;
-
-        ResettableProp[] allProps = FindObjectsByType<ResettableProp>(FindObjectsSortMode.None);
-        foreach (ResettableProp prop in allProps)
+        if (currentActiveDashboard != null)
         {
-            prop.ResetToHome();
-        }
-        if (TitrationController.Instance != null) TitrationController.Instance.ResetLiquid();
-    }
-
-    void PrintCurrentStep()
-    {
-        if (activeModule == null || currentStepIndex >= activeModule.stepActionIDs.Length) return;
-
-        string currentTargetID = activeModule.stepActionIDs[currentStepIndex];
-        string currentInstructions = activeModule.stepDescriptions[currentStepIndex];
-        string currentInfo = activeModule.stepInfo[currentStepIndex]; 
-
-        if (PPEDashboardTester.Instance != null)
-        {
-            PPEDashboardTester.Instance.UpdateTaskPanel(currentInstructions, currentInfo);
-        }
-
-        if (currentTargetID == "SubmitValue")
-        {
-            ShowInputPanel(true);
+            currentActiveDashboard.ShowFailure(message);
         }
         else
         {
-            ShowInputPanel(false);
-        }
-    }
-
-    private void ShowInputPanel(bool show)
-    {
-        if (inputSection != null)
-        {
-            inputSection.style.display = show ? DisplayStyle.Flex : DisplayStyle.None;
+            Debug.LogWarning($"<color=red>Fout (Geen dashboard actief):</color> {message}");
         }
     }
 }
