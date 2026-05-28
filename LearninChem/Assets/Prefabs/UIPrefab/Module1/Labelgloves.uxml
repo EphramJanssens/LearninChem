@@ -1,0 +1,5 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement style="flex-grow: 1; background-color: rgb(37, 41, 48); align-self: center; justify-content: center; background-image: none; align-items: center;">
+        <ui:Image source="project://database/Assets/Images/Safety_gloves_transparent_white.png?fileID=2800000&amp;guid=68a0b22fee6575b48a5e6cac4ef25993&amp;type=3#Safety_gloves_transparent_white" scale-mode="ScaleToFit" style="align-self: center; align-items: center; justify-content: center; width: auto; background-color: rgb(26, 29, 36);"/>
+    </ui:VisualElement>
+</ui:UXML>

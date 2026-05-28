@@ -31,12 +31,17 @@ public class ResettableProp : MonoBehaviour
         StartCoroutine(ResetSequence());
     }
 
-    private IEnumerator ResetSequence()
+private IEnumerator ResetSequence()
     {
+        // 1. Forceer het object om uit handen OF sockets te vallen
         if (grabInteractable != null)
         {
+            // Door hem heel even uit en aan te zetten, breekt hij alle XR-verbindingen (zoals sockets)
             grabInteractable.enabled = false;
         }
+
+        // Geef Unity XR één frame de tijd om de socket leeg te maken
+        yield return null; 
 
         if (rb != null)
         {
@@ -50,6 +55,7 @@ public class ResettableProp : MonoBehaviour
 
         yield return null;
 
+        // Nu is hij veilig los en kunnen we hem teleporteren
         transform.position = startPosition;
         transform.rotation = startRotation;
 
@@ -60,11 +66,10 @@ public class ResettableProp : MonoBehaviour
             rb.isKinematic = originalIsKinematic;
         }
         
+        // Zet de interactie weer aan voor de volgende ronde
         if (grabInteractable != null)
         {
             grabInteractable.enabled = true;
         }
-
-        //Debug.Log($"<color=orange>[ResetSysteem]</color> {gameObject.name} is succesvol gereset naar de tafel!");
     }
 }

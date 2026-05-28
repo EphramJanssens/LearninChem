@@ -11,6 +11,7 @@ TagManager:
   - KalkBottle
   - WaterBottle
   - StirZone
+  - PlayerHand
   layers:
   - Default
   - TransparentFX

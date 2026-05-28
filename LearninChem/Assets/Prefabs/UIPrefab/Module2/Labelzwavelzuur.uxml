@@ -1,0 +1,5 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement style="flex-grow: 1; background-color: rgb(37, 41, 48); align-self: auto; justify-content: center;">
+        <ui:Label text="Zwavelzuur" name="" style="margin-top: 0; margin-right: 20px; margin-bottom: 0; margin-left: 20px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; -unity-font-definition: resource(&quot;Fonts &amp; Materials/Roboto-Regular&quot;); font-size: 16px; color: rgb(255, 255, 255); background-color: rgb(26, 29, 36); -unity-text-align: middle-center; height: 60px;"/>
+    </ui:VisualElement>
+</ui:UXML>
