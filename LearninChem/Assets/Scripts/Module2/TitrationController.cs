@@ -8,9 +8,7 @@ public class TitrationController : MonoBehaviour
     public Renderer liquidRenderer; 
 
     public Color startColor = new Color(0.9f, 0.9f, 0.9f, 0.4f); 
-    
     public Color targetColor = new Color(1f, 0.1f, 0.6f, 0.9f); 
-    
     public Color failedColor = new Color(0.5f, 0f, 0f, 1f);
 
     [Header("Timing (in seconds)")]
@@ -20,6 +18,8 @@ public class TitrationController : MonoBehaviour
     private bool isTitrating = false;
     private float titrationTimer = 0f;
     private bool hasFailedLog = false;
+    
+    public bool isBeakerPrepared = false; 
 
     void Awake()
     {
@@ -37,6 +37,12 @@ public class TitrationController : MonoBehaviour
 
     public void StartTitration()
     {
+        if (!isBeakerPrepared)
+        {
+            Debug.LogWarning("<color=orange>[TitrationController]</color> Beker is nog niet voorbereid! De kleur zal niet veranderen.");
+            return;
+        }
+
         Debug.Log("<color=cyan>[TitrationController]</color> StartTitration aangeroepen! De timer begint NU met lopen.");
         isTitrating = true;
         hasFailedLog = false;
@@ -53,6 +59,9 @@ public class TitrationController : MonoBehaviour
         isTitrating = false;
         titrationTimer = 0f;
         hasFailedLog = false;
+        
+        isBeakerPrepared = false; 
+        
         if (liquidRenderer != null)
         {
             liquidRenderer.material.color = startColor;
@@ -85,8 +94,6 @@ public class TitrationController : MonoBehaviour
                     hasFailedLog = true;
                 }
                 
-                // --- DE FIX ZIT HIER ---
-                // We sturen de foutmelding nu netjes naar de centrale manager
                 if (UniversalProcedureManager.Instance != null)
                 {
                     UniversalProcedureManager.Instance.ShowGlobalFailure("Te ver getitreerd! Je hebt te veel zwavelzuur toegevoegd. Keer terug naar het hoofdmenu om opnieuw te beginnen.");

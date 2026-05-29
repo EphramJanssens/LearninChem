@@ -14,7 +14,12 @@ public class LiquidTriggerZone : MonoBehaviour
         {
             Debug.Log($"<color=cyan>[LiquidTrigger]</color> {requiredTag} gedetecteerd!");
             
-            // Stuur het door naar onze trouwe manager!
+            if (actionIDToSend == "AddIndicator" && TitrationController.Instance != null)
+            {
+                TitrationController.Instance.isBeakerPrepared = true;
+                Debug.Log("<color=green>[LiquidTrigger]</color> Indicator toegevoegd! De beker is nu klaar voor titratie.");
+            }
+            
             if (UniversalProcedureManager.Instance != null)
             {
                 UniversalProcedureManager.Instance.OnActionTriggered(actionIDToSend);
