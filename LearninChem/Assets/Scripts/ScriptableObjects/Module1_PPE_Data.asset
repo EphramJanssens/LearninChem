@@ -18,13 +18,14 @@ MonoBehaviour:
   - LabCoat
   - Goggles
   stepDescriptions:
-  - Doe de werkhandschoenen aan.
+  - Neem de Nitrile handschoenen uit de doos en doe ze aan.
   - Trek de labojas aan.
   - Zet de veiligheidsbril op.
   stepInfo:
-  - "Deze groene nitrilhandschoenen vormen een chemische barri\xE8re tegen agressieve
-    stoffen, zoals het zwavelzuur dat we straks gaan gebruiken. Belangrijke lab-regel:
-    raak met je handschoenen nooit je gezicht of je VR-bril aan!"
+  - "Neem met je handen de nitrile handschoenen uit de doos. Deze groene nitrilhandschoenen
+    vormen een chemische barri\xE8re tegen agressieve stoffen, zoals het zwavelzuur
+    dat we straks gaan gebruiken. Belangrijke lab-regel: raak met je handschoenen
+    nooit je gezicht of je VR-bril aan!"
   - Een brandvertragende labjas vormt de eerste verdedigingslinie. Het beschermt
     je huid en kleding tegen onverwachte chemische spatten en vloeistoffen. Zorg
     in een echt lab dat hij altijd goed gesloten is.

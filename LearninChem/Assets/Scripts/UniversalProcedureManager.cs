@@ -139,11 +139,16 @@ public class UniversalProcedureManager : MonoBehaviour
             scale.ResetScale();
         }
 
-        // --- NIEUW: Reset de Handschoenen (Module 1) ---
         GloveDispenser[] allDispensers = FindObjectsByType<GloveDispenser>(FindObjectsSortMode.None);
         foreach (GloveDispenser dispenser in allDispensers)
         {
             dispenser.ResetGloves();
+        }
+
+        LiquidTriggerZone[] allLiquidTriggers = FindObjectsByType<LiquidTriggerZone>(FindObjectsSortMode.None);
+        foreach (LiquidTriggerZone liquidTrigger in allLiquidTriggers)
+        {
+            liquidTrigger.ResetTrigger();
         }
 
         Debug.Log("<color=orange>[Manager]</color> Alle fysieke laboratorium objecten en detectors zijn gereset.");

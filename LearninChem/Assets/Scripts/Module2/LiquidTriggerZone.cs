@@ -8,11 +8,16 @@ public class LiquidTriggerZone : MonoBehaviour
     [Header("Welke actie moeten we doorgeven?")]
     public string actionIDToSend;
 
+    private bool hasTriggered = false;
+
     private void OnTriggerEnter(Collider other)
     {
+        if (hasTriggered) return;
+
         if (other.CompareTag(requiredTag))
         {
-            Debug.Log($"<color=cyan>[LiquidTrigger]</color> {requiredTag} gedetecteerd!");
+            hasTriggered = true;
+            Debug.Log($"<color=cyan>[LiquidTrigger]</color> {requiredTag} gedetecteerd en gelockt!");
             
             if (actionIDToSend == "AddIndicator" && TitrationController.Instance != null)
             {
@@ -25,5 +30,10 @@ public class LiquidTriggerZone : MonoBehaviour
                 UniversalProcedureManager.Instance.OnActionTriggered(actionIDToSend);
             }
         }
+    }
+
+    public void ResetTrigger()
+    {
+        hasTriggered = false;
     }
 }
