@@ -8,21 +8,33 @@ public class LiquidTriggerZone : MonoBehaviour
     [Header("Welke actie moeten we doorgeven?")]
     public string actionIDToSend;
 
-    private bool hasTriggered = false;
+    [Header("Anti-Spam Instellingen")]
+    [Tooltip("Hoeveel seconden de trigger pauzeert na een aanraking.")]
+    public float triggerCooldown = 2.0f;
+    private float lastTriggerTime = -10f;
+
+    private bool isPermanentlyLocked = false; 
 
     private void OnTriggerEnter(Collider other)
     {
-        if (hasTriggered) return;
+        if (isPermanentlyLocked) return;
 
         if (other.CompareTag(requiredTag))
         {
-            hasTriggered = true;
-            Debug.Log($"<color=cyan>[LiquidTrigger]</color> {requiredTag} gedetecteerd en gelockt!");
+            if (Time.time - lastTriggerTime < triggerCooldown)
+            {
+                return; 
+            }
+
+            lastTriggerTime = Time.time;
+            
+            Debug.Log($"<color=cyan>[LiquidTrigger]</color> {requiredTag} gedetecteerd!");
             
             if (actionIDToSend == "AddIndicator" && TitrationController.Instance != null)
             {
                 TitrationController.Instance.isBeakerPrepared = true;
-                Debug.Log("<color=green>[LiquidTrigger]</color> Indicator toegevoegd! De beker is nu klaar voor titratie.");
+                isPermanentlyLocked = true; 
+                Debug.Log("<color=green>[LiquidTrigger]</color> Indicator toegevoegd! Trigger is nu permanent gelockt voor deze sessie.");
             }
             
             if (UniversalProcedureManager.Instance != null)
@@ -34,6 +46,7 @@ public class LiquidTriggerZone : MonoBehaviour
 
     public void ResetTrigger()
     {
-        hasTriggered = false;
+        isPermanentlyLocked = false;
+        lastTriggerTime = -10f;
     }
 }

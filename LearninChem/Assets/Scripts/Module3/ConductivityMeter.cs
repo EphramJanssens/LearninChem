@@ -19,6 +19,8 @@ public class ConductivityMeter : MonoBehaviour
     private bool hasMeasured = false;
     private float timer = 0f;
     
+    public bool isSolutionStirred = false; 
+    
     public int finalValue { get; private set; } 
 
     void Awake()
@@ -45,6 +47,17 @@ public class ConductivityMeter : MonoBehaviour
 
         if (other.CompareTag(targetTag))
         {
+            if (!isSolutionStirred)
+            {
+                Debug.LogWarning("<color=orange>[ConductivityMeter]</color> Meting geblokkeerd: Oplossing is nog niet geroerd!");
+                
+                if (UniversalProcedureManager.Instance != null)
+                {
+                    UniversalProcedureManager.Instance.ShowGlobalFailure("Fout! Je moet de oplossing eerst goed roeren voordat je een betrouwbare meting kan doen.");
+                }
+                return;
+            }
+
             StartMeasurement();
         }
     }
@@ -92,6 +105,9 @@ public class ConductivityMeter : MonoBehaviour
         hasMeasured = false;
         timer = 0f;
         finalValue = 0;
+        
+        isSolutionStirred = false; 
+        
         if (displayLabel != null) displayLabel.text = "--- µS/cm";
     }
 }
