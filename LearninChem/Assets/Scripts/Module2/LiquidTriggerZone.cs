@@ -31,6 +31,12 @@ public class LiquidTriggerZone : MonoBehaviour
                 TitrationController.Instance.isBeakerPrepared = true;
                 Debug.Log("<color=green>[LiquidTrigger]</color> Indicator toegevoegd! Beker is voorbereid.");
             }
+
+            if (actionIDToSend == "AddWater" && BeakerVisuals.Instance != null)
+            {
+                BeakerVisuals.Instance.ToonVerdund();
+                Debug.Log("<color=green>[LiquidTrigger]</color> Water toegevoegd! De kalkoplossing is nu verdund.");
+            }
             
             if (UniversalProcedureManager.Instance != null)
             {

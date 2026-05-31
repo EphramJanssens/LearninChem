@@ -161,6 +161,11 @@ public class UniversalProcedureManager : MonoBehaviour
             liquidTrigger.ResetTrigger();
         }
 
+        if (BeakerVisuals.Instance != null)
+        {
+            BeakerVisuals.Instance.ResetBeker();
+        }
+
         Debug.Log("<color=orange>[Manager]</color> Alle fysieke laboratorium objecten en detectors zijn gereset.");
     }
 

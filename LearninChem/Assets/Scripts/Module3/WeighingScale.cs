@@ -75,6 +75,11 @@ public class WeighingScale : MonoBehaviour
 
         currentWeight = targetKalkWeight;
         UpdateScreen();
+
+        if (BeakerVisuals.Instance != null)
+        {
+            BeakerVisuals.Instance.ToonKalk();
+        }
         
         if (UniversalProcedureManager.Instance != null)
         {
