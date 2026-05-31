@@ -17,8 +17,8 @@ public class TitrationController : MonoBehaviour
 
     private bool isTitrating = false;
     private float titrationTimer = 0f;
-    private bool hasFailedLog = false;
     
+    public bool isFailed = false;
     public bool isBeakerPrepared = false; 
 
     void Awake()
@@ -45,7 +45,7 @@ public class TitrationController : MonoBehaviour
 
         Debug.Log("<color=cyan>[TitrationController]</color> StartTitration aangeroepen! De timer begint NU met lopen.");
         isTitrating = true;
-        hasFailedLog = false;
+        isFailed = false;
     }
 
     public void StopTitration()
@@ -58,7 +58,7 @@ public class TitrationController : MonoBehaviour
     {
         isTitrating = false;
         titrationTimer = 0f;
-        hasFailedLog = false;
+        isFailed = false;
         
         isBeakerPrepared = false; 
         
@@ -86,12 +86,12 @@ public class TitrationController : MonoBehaviour
             }
             else
             {
-                isTitrating = false;
+                isTitrating = false; 
                 
-                if (!hasFailedLog)
+                if (!isFailed)
                 {
                     Debug.Log("<color=red>[TitrationController]</color> MISLUKT! Kraan stond te lang open.");
-                    hasFailedLog = true;
+                    isFailed = true;
                 }
                 
                 if (UniversalProcedureManager.Instance != null)

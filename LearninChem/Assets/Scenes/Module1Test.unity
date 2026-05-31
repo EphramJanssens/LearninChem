@@ -4142,6 +4142,7 @@ MonoBehaviour:
   failedColor: {r: 0.4, g: 0, b: 0, a: 0.9}
   timeToTargetColor: 5
   timeToFail: 7
+  isFailed: 0
   isBeakerPrepared: 0
 --- !u!1 &349037058
 GameObject:
@@ -4379,7 +4380,7 @@ Transform:
   m_GameObject: {fileID: 420919627}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.519, y: 1.453, z: 0}
+  m_LocalPosition: {x: 1.5343, y: 1.453, z: -0.0068}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -5380,8 +5381,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 7.5, y: 5.5, z: 0.0000004808253}
-  m_Center: {x: 0, y: 0.00000023841858, z: 0}
+  m_Size: {x: 10.000002, y: 8.5, z: 0.0000007430937}
+  m_Center: {x: 0.0000013113022, y: 0, z: 0.0000038146973}
 --- !u!114 &574996940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5412,8 +5413,8 @@ MonoBehaviour:
   m_SortingOrder: 0
   m_Position: 0
   m_WorldSpaceSizeMode: 1
-  m_WorldSpaceWidth: 750
-  m_WorldSpaceHeight: 550
+  m_WorldSpaceWidth: 1000
+  m_WorldSpaceHeight: 850
   m_PivotReferenceSize: 0
   m_Pivot: 0
   m_WorldSpaceCollider: {fileID: 0}
@@ -10172,8 +10173,8 @@ MonoBehaviour:
   m_SortingOrder: 0
   m_Position: 0
   m_WorldSpaceSizeMode: 1
-  m_WorldSpaceWidth: 750
-  m_WorldSpaceHeight: 550
+  m_WorldSpaceWidth: 1000
+  m_WorldSpaceHeight: 850
   m_PivotReferenceSize: 0
   m_Pivot: 0
   m_WorldSpaceCollider: {fileID: 0}
@@ -10270,8 +10271,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 7.5, y: 5.5, z: 0.0000004808253}
-  m_Center: {x: 0, y: 0.00000023841858, z: 0}
+  m_Size: {x: 10.000005, y: 8.5, z: 0.0000007430939}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1278136930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15852,7 +15853,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: c868e02eb4b044054a4d63b6ec2a3eeb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.453
+      value: 1.4683
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: c868e02eb4b044054a4d63b6ec2a3eeb, type: 3}
       propertyPath: m_LocalPosition.y
@@ -15860,7 +15861,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: c868e02eb4b044054a4d63b6ec2a3eeb, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.004
+      value: -0.0028
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: c868e02eb4b044054a4d63b6ec2a3eeb, type: 3}
       propertyPath: m_LocalRotation.w
@@ -17550,8 +17551,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 7.5, y: 5.5, z: 0.0000004808253}
-  m_Center: {x: 0, y: 0.00000023841858, z: 0}
+  m_Size: {x: 10.000002, y: 8.5, z: 0.0000007430937}
+  m_Center: {x: 0.0000037103891, y: 0, z: 0}
 --- !u!114 &2070411805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17595,8 +17596,8 @@ MonoBehaviour:
   m_SortingOrder: 0
   m_Position: 0
   m_WorldSpaceSizeMode: 1
-  m_WorldSpaceWidth: 750
-  m_WorldSpaceHeight: 550
+  m_WorldSpaceWidth: 1000
+  m_WorldSpaceHeight: 850
   m_PivotReferenceSize: 0
   m_Pivot: 0
   m_WorldSpaceCollider: {fileID: 0}

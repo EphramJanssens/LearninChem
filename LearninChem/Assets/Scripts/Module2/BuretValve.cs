@@ -44,7 +44,11 @@ public class BuretValve : MonoBehaviour
         if (isOpen)
         {
             turnCoroutine = StartCoroutine(SmoothTurn(new Vector3(90, 0, 0)));
-            UniversalProcedureManager.Instance.OnActionTriggered("OpenValve");
+            
+            if (TitrationController.Instance == null || !TitrationController.Instance.isFailed)
+            {
+                UniversalProcedureManager.Instance.OnActionTriggered("OpenValve");
+            }
             
             if (TitrationController.Instance != null) 
             {
@@ -54,7 +58,15 @@ public class BuretValve : MonoBehaviour
         else
         {
             turnCoroutine = StartCoroutine(SmoothTurn(Vector3.zero));
-            UniversalProcedureManager.Instance.OnActionTriggered("CloseValve");
+            
+            if (TitrationController.Instance == null || !TitrationController.Instance.isFailed)
+            {
+                UniversalProcedureManager.Instance.OnActionTriggered("CloseValve");
+            }
+            else
+            {
+                Debug.Log("<color=orange>[BuretValve]</color> Kraan dichtgedraaid, maar titratie was al mislukt. Geen succes doorgegeven.");
+            }
             
             if (TitrationController.Instance != null) 
             {
