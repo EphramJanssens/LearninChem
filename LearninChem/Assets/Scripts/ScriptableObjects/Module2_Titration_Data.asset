@@ -28,18 +28,17 @@ MonoBehaviour:
   - Draai de kraan open van de buret
   - Draai de kraan van de buret dicht bij de kleuromslag
   stepInfo:
-  - Zorg dat de maatbeker exact gecentreerd onder de opening van de buret staat.
+  - Zorg dat de beker exact gecentreerd onder de opening van de buret staat.
   - Dit fosfozuur vormt ons monster, ook wel de 'analiet' genoemd. De hoeveelheid
     die we hier gebruiken is de basis voor de berekening aan het einde van de titratie.
   - De toegevoegde druppels zijn een 'indicator'. Dit is een speciale chemische vloeistof
     die visueel reageert op een verandering in de pH-waarde. Zonder deze indicator
     zouden we het omslagpunt nooit met het blote oog kunnen zien.
-  - We vullen de buret met de 'titrant'. Let bij het vullen goed op de meniscus (de
-    bolling van het vloeistofoppervlak) om straks precies te kunnen aflezen hoeveel
-    vloeistof we hebben gebruikt.
+  - We vullen de buret met de 'titrant'. Let bij het vullen goed op de kleur omslag
+    zodat je niet over triteert.
   - Laat de titrant rustig en gecontroleerd in het monster druppelen. In een echt
     laboratorium zou je de beker nu constant zwenken of roeren zodat de vloeistoffen
     direct en egaal met elkaar mengen.
-  - Concentricatie vereist! Zodra de vloeistof in de beker permanent van kleur verandert,
+  - Concentratie vereist! Zodra de vloeistof in de beker permanent van kleur verandert,
     heb je het equivalentiepunt bereikt. Draai de kraan onmiddellijk dicht om 'over-titratie'
     (een ongeldige meting) te voorkomen.

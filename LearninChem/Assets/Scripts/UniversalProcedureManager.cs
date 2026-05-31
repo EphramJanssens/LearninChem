@@ -18,6 +18,11 @@ public class UniversalProcedureManager : MonoBehaviour
     [Header("VR Player & Spawnpoint")]
     public Transform vrPlayer;       
     public Transform spawnPoint;     
+
+    [Header("Audio Feedback")]
+    public AudioSource sfxPlayer;
+    public AudioClip successClip;
+    public AudioClip failureClip;
     
     private int currentStepIndex = 0;
     private bool isModuleActive = false; 
@@ -59,6 +64,11 @@ public class UniversalProcedureManager : MonoBehaviour
         {
             Debug.Log($"<color=green>Correct!</color> Voltooid: {incomingActionID}");
             currentStepIndex++;
+
+            if (sfxPlayer != null && successClip != null)
+            {
+            sfxPlayer.PlayOneShot(successClip);
+            }
 
             if (currentStepIndex >= activeModule.stepActionIDs.Length)
             {
@@ -185,6 +195,11 @@ public class UniversalProcedureManager : MonoBehaviour
         if (currentActiveDashboard != null)
         {
             currentActiveDashboard.ShowFailure(message);
+
+            if (sfxPlayer != null && failureClip != null)
+            {
+            sfxPlayer.PlayOneShot(failureClip);
+            }
         }
         else
         {

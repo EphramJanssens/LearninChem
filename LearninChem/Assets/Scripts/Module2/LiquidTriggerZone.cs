@@ -13,12 +13,8 @@ public class LiquidTriggerZone : MonoBehaviour
     public float triggerCooldown = 2.0f;
     private float lastTriggerTime = -10f;
 
-    private bool isPermanentlyLocked = false; 
-
     private void OnTriggerEnter(Collider other)
     {
-        if (isPermanentlyLocked) return;
-
         if (other.CompareTag(requiredTag))
         {
             if (Time.time - lastTriggerTime < triggerCooldown)
@@ -33,8 +29,7 @@ public class LiquidTriggerZone : MonoBehaviour
             if (actionIDToSend == "AddIndicator" && TitrationController.Instance != null)
             {
                 TitrationController.Instance.isBeakerPrepared = true;
-                isPermanentlyLocked = true; 
-                Debug.Log("<color=green>[LiquidTrigger]</color> Indicator toegevoegd! Trigger is nu permanent gelockt voor deze sessie.");
+                Debug.Log("<color=green>[LiquidTrigger]</color> Indicator toegevoegd! Beker is voorbereid.");
             }
             
             if (UniversalProcedureManager.Instance != null)
@@ -46,7 +41,6 @@ public class LiquidTriggerZone : MonoBehaviour
 
     public void ResetTrigger()
     {
-        isPermanentlyLocked = false;
         lastTriggerTime = -10f;
     }
 }
