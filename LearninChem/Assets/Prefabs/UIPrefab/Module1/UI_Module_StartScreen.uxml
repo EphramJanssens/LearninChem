@@ -1,0 +1,70 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Prefabs/UIPrefab/Module1/ButtonStyle.uss?fileID=7433441132597879392&amp;guid=62c164e983c8b1e4c8952b1c976a87db&amp;type=3#ButtonStyle"/>
+    <Style src="project://database/Assets/Prefabs/UIPrefab/UI_Module_Option.uss?fileID=7433441132597879392&amp;guid=7a5a6b7ccf63bf3448bb866e73fe164b&amp;type=3#UI_Module_Option"/>
+    
+    <ui:VisualElement name="Background" style="flex-grow: 1; -unity-background-image-tint-color: rgb(37, 41, 48); background-color: rgb(37, 41, 48);">
+        <ui:Label text="Module 1: PBM&apos;s" name="Header" style="background-color: rgb(26, 29, 36); -unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Examples%20&amp;%20Extras/Fonts/Roboto-Bold.ttf?fileID=12800000&amp;guid=4beb055f07aaff244873dec698d0363e&amp;type=3#Roboto-Bold&quot;); font-size: 32px; color: rgb(255, 255, 255); padding-left: 60px; -unity-text-align: middle-left; height: 60px;"/>
+        
+        <ui:VisualElement name="StartMenuContainer" style="flex-grow: 1; align-items: center; justify-content: space-evenly; flex-direction: column;">
+            <ui:VisualElement name="PPEInfoPanel1" style="flex-direction: row; justify-content: space-evenly; align-items: center; width: 350px; height: 60px; background-color: rgb(26, 29, 36); border-radius: 5px; -unity-font-definition: resource(&quot;Fonts &amp; Materials/Roboto-Medium&quot;); font-size: 24px;">
+                <ui:Image name="GogglesImg" style="background-image: url(&quot;project://database/Assets/Images/Safety_goggles_transparent_white.png?fileID=21300000&amp;guid=f922b9ee41d4d924c9e6b43f4e7e15d5&amp;type=3#Safety_goggles_transparent_white&quot;); -unity-background-scale-mode: stretch-to-fill; width: 60px; height: 30px; -unity-text-auto-size: none; margin-left: 0; margin-right: 0;"/>
+                <ui:Label text="Visie bescherming" name="VisieBescherming" style="color: rgb(255, 255, 255); font-size: 24px;"/>
+            </ui:VisualElement>
+            <ui:VisualElement name="PPEInfoPanel2" style="flex-direction: row; justify-content: space-evenly; align-items: center; width: 350px; height: 60px; background-color: rgb(26, 29, 36); border-radius: 5px;">
+                <ui:Image name="GlovesImg" style="background-image: url(&quot;project://database/Assets/Images/Safety_gloves_transparent_white.png?fileID=21300000&amp;guid=68a0b22fee6575b48a5e6cac4ef25993&amp;type=3#Safety_gloves_transparent_white&quot;); -unity-background-scale-mode: stretch-to-fill; width: 60px; height: 50px;"/>
+                <ui:Label text="Hand bescherming" name="HandBescherming" style="color: rgb(255, 255, 255); font-size: 24px; -unity-font-definition: resource(&quot;Fonts &amp; Materials/Roboto-Medium&quot;);"/>
+            </ui:VisualElement>
+            <ui:VisualElement name="PPEInfoPanel3" style="flex-direction: row; justify-content: space-evenly; align-items: center; width: 350px; height: 60px; background-color: rgb(26, 29, 36); border-radius: 5px; align-self: auto;">
+                <ui:Image name="LabCoatImg" style="background-image: url(&quot;project://database/Assets/Images/Safety_coat_transparent_white.png?fileID=21300000&amp;guid=7dedf11d52daad74ea0545e4faf228a6&amp;type=3#Safety_coat_transparent_white&quot;); -unity-background-scale-mode: stretch-to-fill; width: 60px; height: 50px;"/>
+                <ui:Label text="Lichaam bescherming" name="LichaamBescherming" style="color: rgb(255, 255, 255); font-size: 24px; -unity-font-definition: resource(&quot;Fonts &amp; Materials/Roboto-Medium&quot;);"/>
+            </ui:VisualElement>
+            <ui:Button text="Start training" name="StartTrainingBtn" focusable="false"/>
+        </ui:VisualElement>
+        
+        <ui:VisualElement name="TaskPanelContainer" style="display: none; flex-grow: 1; flex-direction: column; align-items: center; justify-content: center; padding: 40px;">
+            <ui:Label text="Instructie komt hier..." name="InstructionText" style="color: rgb(255, 255, 255); font-size: 32px; -unity-font-style: bold; margin-bottom: 20px; white-space: normal; -unity-text-align: middle-center; flex-shrink: 0;"/>
+            
+        <ui:VisualElement style="background-color: #1A1D24; border-radius: 5px; border-left-color: #FFD500; border-left-width: 7px; padding: 20px; width: 80%; max-width: 600px; border-top-color: #1A1D24; border-right-color: #1A1D24; border-bottom-color: #1A1D24; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px;">
+            <ui:Label text="Extra informatie over de PBM komt hier..." name="InfoText" style="color: #ffffff; font-size: 22px; white-space: normal; -unity-font-style: bold;"/>
+            <ui:Button name="BtnCancelModule" text="Module Afbreken" style="background-color: #E63946; color: white; border-radius: 5px; padding: 10px; margin-top: 20px; font-size: 18px;" />
+        </ui:VisualElement>
+            
+            <ui:VisualElement name="HelpPanel" style="display: none; background-color: #E63946; border-radius: 5px; padding: 20px; margin-top: 30px; width: 80%; max-width: 600px;">
+                <ui:Label text="Foutmelding komt hier..." name="HelpMessage" style="color: rgb(255, 255, 255); font-size: 22px; -unity-font-style: bold; white-space: normal; -unity-text-align: middle-center;"/>
+            </ui:VisualElement>
+   
+            <ui:VisualElement name="InputSection" style="display: none; flex-shrink: 0; align-items: center; margin-top: 15px;">
+                
+                <ui:VisualElement style="flex-direction: row; align-items: center; justify-content: center; margin-bottom: 10px;">
+                    <ui:Label text="Invoer (µS/cm):" style="color: #FFFFFF; font-size: 24px; margin-right: 15px; -unity-font-style: bold; flex-shrink: 0;" />
+                    <ui:TextField name="ConductivityInput" readonly="true" style="font-size: 28px; background-color: #FFFFFF; color: #000000; width: 150px; height: 50px; min-height: 50px; flex-shrink: 0; -unity-font-style: bold;" />
+                </ui:VisualElement>
+
+                <ui:VisualElement name="NumpadContainer" style="align-items: center; flex-shrink: 0;">
+                    <ui:VisualElement style="flex-direction: row; justify-content: center; margin-bottom: 5px;">
+                        <ui:Button name="Btn1" text="1" style="width: 50px; height: 50px; font-size: 20px; -unity-font-style: bold; background-color: #252930; color: white; margin: 2px;" />
+                        <ui:Button name="Btn2" text="2" style="width: 50px; height: 50px; font-size: 20px; -unity-font-style: bold; background-color: #252930; color: white; margin: 2px;" />
+                        <ui:Button name="Btn3" text="3" style="width: 50px; height: 50px; font-size: 20px; -unity-font-style: bold; background-color: #252930; color: white; margin: 2px;" />
+                        <ui:Button name="Btn4" text="4" style="width: 50px; height: 50px; font-size: 20px; -unity-font-style: bold; background-color: #252930; color: white; margin: 2px;" />
+                        <ui:Button name="Btn5" text="5" style="width: 50px; height: 50px; font-size: 20px; -unity-font-style: bold; background-color: #252930; color: white; margin: 2px;" />
+                        <ui:Button name="BtnClear" text="C" style="width: 50px; height: 50px; font-size: 20px; -unity-font-style: bold; background-color: #E63946; color: white; margin: 2px;" />
+                    </ui:VisualElement>
+                    
+                    <ui:VisualElement style="flex-direction: row; justify-content: center;">
+                        <ui:Button name="Btn6" text="6" style="width: 50px; height: 50px; font-size: 20px; -unity-font-style: bold; background-color: #252930; color: white; margin: 2px;" />
+                        <ui:Button name="Btn7" text="7" style="width: 50px; height: 50px; font-size: 20px; -unity-font-style: bold; background-color: #252930; color: white; margin: 2px;" />
+                        <ui:Button name="Btn8" text="8" style="width: 50px; height: 50px; font-size: 20px; -unity-font-style: bold; background-color: #252930; color: white; margin: 2px;" />
+                        <ui:Button name="Btn9" text="9" style="width: 50px; height: 50px; font-size: 20px; -unity-font-style: bold; background-color: #252930; color: white; margin: 2px;" />
+                        <ui:Button name="Btn0" text="0" style="width: 50px; height: 50px; font-size: 20px; -unity-font-style: bold; background-color: #252930; color: white; margin: 2px;" />
+                        <ui:Button name="BtnEnter" text="OK" style="width: 50px; height: 50px; font-size: 20px; -unity-font-style: bold; background-color: #3498DB; color: white; margin: 2px;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                
+            </ui:VisualElement>
+            
+            <ui:Button text="Opnieuw Beginnen" name="RestartBtn" style="display: none; background-color: rgb(46, 204, 113); margin-top: 20px; width: 300px; height: 50px; font-size: 24px; border-radius: 5px; color: white; border-width: 0;" focusable="false"/>
+
+            <ui:Button text="Terug naar Hoofdmenu" name="ToMainMenuBtn" style="display: none; background-color: #34495E; margin-top: 10px; width: 300px; height: 50px; font-size: 24px; border-radius: 5px; color: white; border-width: 0;" focusable="false"/>             
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

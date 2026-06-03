@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a4baab0f7c307b44b4dfb87cb7e74e1, type: 3}
+  m_Name: Module2_Titration_Data
+  m_EditorClassIdentifier: Assembly-CSharp::ModuleData
+  moduleTitle: Titratie
+  stepActionIDs:
+  - PlaceBeaker
+  - AddSample
+  - AddIndicator
+  - FillBuret
+  - OpenValve
+  - CloseValve
+  stepDescriptions:
+  - Plaats de beker onder de buret
+  - Giet het fosfozuur in de beker
+  - Voeg de druppels toe in de beker met de pipet
+  - Giet zwavelzuur bovenin de buret
+  - Draai de kraan open van de buret
+  - Draai de kraan van de buret dicht bij de kleuromslag
+  stepInfo:
+  - Zorg dat de beker exact gecentreerd onder de opening van de buret staat.
+  - Dit fosfozuur vormt ons monster, ook wel de 'analiet' genoemd. De hoeveelheid
+    die we hier gebruiken, is de basis voor de berekening aan het einde van de titratie.
+  - De toegevoegde druppels zijn een 'indicator'. Dit is een speciale chemische vloeistof
+    die visueel reageert op een verandering in de pH-waarde. Zonder deze indicator
+    zouden we het omslagpunt nooit met het blote oog kunnen zien.
+  - We vullen de buret met de 'titrant'. Let bij het vullen goed op de kleuromslag
+    zodat je niet overtriteert.
+  - Laat de titrant rustig en gecontroleerd in het monster druppelen. In een echt
+    laboratorium zou je de beker nu constant zwenken of roeren, zodat de vloeistoffen
+    direct en egaal met elkaar mengen.
+  - Concentratie vereist! Zodra de vloeistof in de beker permanent van kleur verandert,
+    heb je het equivalentiepunt bereikt. Draai de kraan onmiddellijk dicht om 'overtitratie'
+    (een ongeldige meting) te voorkomen.

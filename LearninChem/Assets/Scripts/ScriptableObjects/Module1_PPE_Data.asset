@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a4baab0f7c307b44b4dfb87cb7e74e1, type: 3}
+  m_Name: Module1_PPE_Data
+  m_EditorClassIdentifier: Assembly-CSharp::ModuleData
+  moduleTitle: Veiligheid en PPE
+  stepActionIDs:
+  - Gloves
+  - LabCoat
+  - Goggles
+  stepDescriptions:
+  - Neem de nitrilhandschoenen uit de doos en doe ze aan.
+  - Trek de labjas aan.
+  - Zet de veiligheidsbril op.
+  stepInfo:
+  - "Neem met je handen de nitrile handschoenen uit de doos. Deze groene nitrilhandschoenen
+    vormen een chemische barri\xE8re tegen agressieve stoffen, zoals het zwavelzuur
+    dat we straks gaan gebruiken. Belangrijke lab regel: raak met je handschoenen
+    nooit je gezicht of je VR-bril aan!"
+  - Een brandvertragende labjas vormt de eerste verdedigingslinie. Het beschermt
+    je huid en kleding tegen onverwachte chemische spatten en vloeistoffen. Zorg
+    in een echt lab dat hij altijd goed gesloten is.
+  - Je ogen zijn extreem kwetsbaar. Een zuurvrije veiligheidsbril is verplicht in
+    het lab. Het voorkomt dat bijtend zuur of rondvliegend glas je zicht permanent
+    kan beschadigen.
