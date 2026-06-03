@@ -2,6 +2,11 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
+/* 
+ * Functie: Onthoudt bij het opstarten de originele positie, rotatie en zwaartekracht-status (kinematic) van een fysiek 3D-object.
+ * Invloed: Wordt aangestuurd door de UniversalProcedureManager om objecten terug te teleporteren; verbreekt hierbij kort de XR Grab Interactables zodat objecten uit handen of sockets vallen.
+ */
+
 public class ResettableProp : MonoBehaviour
 {
     private Vector3 startPosition;
@@ -31,12 +36,14 @@ public class ResettableProp : MonoBehaviour
         StartCoroutine(ResetSequence());
     }
 
-    private IEnumerator ResetSequence()
+private IEnumerator ResetSequence()
     {
         if (grabInteractable != null)
         {
             grabInteractable.enabled = false;
         }
+
+        yield return null; 
 
         if (rb != null)
         {
@@ -64,7 +71,5 @@ public class ResettableProp : MonoBehaviour
         {
             grabInteractable.enabled = true;
         }
-
-        //Debug.Log($"<color=orange>[ResetSysteem]</color> {gameObject.name} is succesvol gereset naar de tafel!");
     }
 }

@@ -22,20 +22,19 @@ MonoBehaviour:
   - InsertProbe
   - SubmitValue
   stepDescriptions:
-  - Plaats de beker
+  - Plaats de beker op de weegschaal
   - Kalibreer de weegschaal
-  - Voeg de kalk toe
-  - Voeg oplosmiddel toe
-  - Meng de oplossing
-  - Meet de geleidbaarheid
-  - Noteer de eindwaarde
+  - Voeg kalk toe in de beker
+  - Voeg oplosmiddel toe in de beker
+  - Meng de oplossing in de beker
+  - Meet de geleidbaarheid in de beker
+  - Noteer de eindwaarde van de geleidbaarheidsmeting
   stepInfo:
   - Pak een lege glazen beker en zet deze op de weegschaal.
   - Druk op de 'Tarra' (of nul) knop op de weegschaal om het gewicht van het glas
     te negeren.
-  - Pak het potje kalk en houd deze boven de beker om 5.50g toe te voegen.
-  - Pak de beker van de weegschaal. Gebruik de spuitfles met gedestilleerd water
-    om de beker te vullen.
+  - Pak de beker met kalk en houd deze boven de beker om 5,50g toe te voegen.
+  - Gebruik de Erlenmeyer met gedestilleerd water om de beker te vullen.
   - Pak de glazen roerstaaf en roer rustig in de beker totdat de kalk is opgelost.
   - Pak de meetpen en steek de elektrode in de oplossing. Wacht tot de waarde op
     het basisstation is gestabiliseerd.

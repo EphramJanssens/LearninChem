@@ -1,5 +1,10 @@
 using UnityEngine;
 
+/*
+ * Functie: Meet hoelang en hoe snel een glazen roerstaaf (StirRod) door de vloeistof wordt bewogen totdat de benodigde roertijd is bereikt.
+ * Invloed: Ontgrendelt de meting in ConductivityMeter (isSolutionStirred = true) en stuurt het succes signaal ("StirSolution") door naar de UniversalProcedureManager.
+ */
+
 public class StirDetector : MonoBehaviour
 {
     [Header("Instellingen")]
@@ -27,6 +32,12 @@ public class StirDetector : MonoBehaviour
                     isStirringComplete = true;
                     Debug.Log("<color=green>[StirDetector]</color> Roeren voltooid! Signaal 'StirSolution' wordt nu naar de manager gestuurd.");
                     
+                    if (ConductivityMeter.Instance != null)
+                    {
+                        ConductivityMeter.Instance.isSolutionStirred = true;
+                        Debug.Log("<color=cyan>[StirDetector]</color> Geleidbaarheidsmeter is nu ontgrendeld.");
+                    }
+                    
                     if (UniversalProcedureManager.Instance != null)
                     {
                         UniversalProcedureManager.Instance.OnActionTriggered("StirSolution");
@@ -36,7 +47,6 @@ public class StirDetector : MonoBehaviour
         }
     }
 
-    // Roep deze aan wanneer de speler terugkeert naar het hoofdmenu of de beker leeggooit
     public void ResetStirring()
     {
         currentStirTime = 0f;

@@ -1,5 +1,10 @@
 using UnityEngine;
 
+/*
+ * Functie: Detecteert via collisies of specifieke vloeistoffen (zoals indicator of water) in een beker worden gegoten, voorzien van een anti-spam cooldown.
+ * Invloed: Updatet de status in TitrationController of BeakerVisuals, en geeft de bijbehorende actie (bijv. "AddIndicator" of "AddWater") door aan de UniversalProcedureManager.
+ */
+
 public class LiquidTriggerZone : MonoBehaviour
 {
     [Header("Welk object verwachten we hier?")]
@@ -8,17 +13,45 @@ public class LiquidTriggerZone : MonoBehaviour
     [Header("Welke actie moeten we doorgeven?")]
     public string actionIDToSend;
 
+    [Header("Anti-Spam Instellingen")]
+    [Tooltip("Hoeveel seconden de trigger pauzeert na een aanraking.")]
+    public float triggerCooldown = 2.0f;
+    private float lastTriggerTime = -10f;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag(requiredTag))
         {
+            if (Time.time - lastTriggerTime < triggerCooldown)
+            {
+                return; 
+            }
+
+            lastTriggerTime = Time.time;
+            
             Debug.Log($"<color=cyan>[LiquidTrigger]</color> {requiredTag} gedetecteerd!");
             
-            // Stuur het door naar onze trouwe manager!
+            if (actionIDToSend == "AddIndicator" && TitrationController.Instance != null)
+            {
+                TitrationController.Instance.isBeakerPrepared = true;
+                Debug.Log("<color=green>[LiquidTrigger]</color> Indicator toegevoegd! Beker is voorbereid.");
+            }
+
+            if (actionIDToSend == "AddWater" && BeakerVisuals.Instance != null)
+            {
+                BeakerVisuals.Instance.ToonVerdund();
+                Debug.Log("<color=green>[LiquidTrigger]</color> Water toegevoegd! De kalkoplossing is nu verdund.");
+            }
+            
             if (UniversalProcedureManager.Instance != null)
             {
                 UniversalProcedureManager.Instance.OnActionTriggered(actionIDToSend);
             }
         }
+    }
+
+    public void ResetTrigger()
+    {
+        lastTriggerTime = -10f;
     }
 }

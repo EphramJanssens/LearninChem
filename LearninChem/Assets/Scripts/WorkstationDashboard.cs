@@ -1,6 +1,11 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 
+/* 
+ * Functie: Bestuurt de lokale UI-schermen bij de werktafels (instructies, info en foutmeldingen) via Unity's UI Toolkit.
+ * Invloed: Krijgt zijn teksten rechtstreeks gevoerd door de UniversalProcedureManager en stuurt commando's (zoals 'Herstarten' of 'Terug naar hoofdmenu') terug naar deze manager bij het indrukken van een knop.
+ */
+
 public class WorkstationDashboard : MonoBehaviour
 {
     private UIDocument uiDocument;
@@ -53,6 +58,9 @@ public class WorkstationDashboard : MonoBehaviour
         }
     }
 
+/*
+* Maakt het taak paneel zichtbaar en vult dit met de nieuwe teksten die het doorkrijgt van de manager.
+*/
     public void UpdateDashboard(string title, string instruction, string info)
     {
         InitializeUI();
@@ -74,6 +82,9 @@ public class WorkstationDashboard : MonoBehaviour
         if (infoLabel != null) infoLabel.text = info;
     }
 
+/*
+* Toont het rode waarschuwingspaneel (HelpPanel) met de specifieke foutmelding die de speler heeft gemaakt.
+*/
     public void ShowFailure(string message)
     {
         InitializeUI();
@@ -81,6 +92,9 @@ public class WorkstationDashboard : MonoBehaviour
         if (helpMessage != null) helpMessage.text = message;
     }
 
+/*
+* Verandert de UI naar een succes scherm en toont de knoppen om opnieuw te beginnen of terug te keren.
+*/
     public void SetModuleComplete()
     {
         InitializeUI();
@@ -95,6 +109,9 @@ public class WorkstationDashboard : MonoBehaviour
         if (cancelBtn != null) cancelBtn.style.display = DisplayStyle.None;
     }
 
+/*
+* Bepaald welke panelen zichtbaar moeten zijn (bijv. het startscherm) en zetten de onzichtbare collider aan of uit zodat de speler er wel of niet op kan klikken.
+*/
     public void ResetDashboard()
     {
         InitializeUI();
@@ -125,6 +142,9 @@ public class WorkstationDashboard : MonoBehaviour
         if (uiCollider != null) uiCollider.enabled = false;
     }
 
+/*
+* Event listeners die doorgeven aan de UniversalProcedureManager welke knop de speler heeft ingedrukt.
+*/
     private void OnRestartClicked()
     {
         if (UniversalProcedureManager.Instance != null && UniversalProcedureManager.Instance.activeModule != null)

@@ -1,6 +1,11 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 
+/*
+ * Functie: Beheert het numpad toetsenbord op het UI scherm waarmee de speler de gemeten geleidbaarheid moet invoeren en controleert of dit overeenkomt met de echte waarde.
+ * Invloed: Leest de correcte waarde uit de ConductivityMeter en stuurt een succes actie ("SubmitValue") naar de UniversalProcedureManager bij een juiste invoer.
+ */
+
 public class DashboardInputValidator : MonoBehaviour
 {
     [Header("UI Koppeling")]

@@ -2,6 +2,11 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
+/*
+ * Functie: Simuleert een weegschaal met een tarre functie en weergave op een lokaal UI scherm. Controleert of er getarreerd is voordat kalk wordt toegevoegd.
+ * Invloed: Triggert visuele kleur updates in BeakerVisuals en geeft acties (zoals 'TareScale' of 'AddKalk') of foutmeldingen door aan de UniversalProcedureManager.
+ */
+
 public class WeighingScale : MonoBehaviour
 {
     [Header("UI & Knoppen")]
@@ -75,6 +80,11 @@ public class WeighingScale : MonoBehaviour
 
         currentWeight = targetKalkWeight;
         UpdateScreen();
+
+        if (BeakerVisuals.Instance != null)
+        {
+            BeakerVisuals.Instance.ToonKalk();
+        }
         
         if (UniversalProcedureManager.Instance != null)
         {

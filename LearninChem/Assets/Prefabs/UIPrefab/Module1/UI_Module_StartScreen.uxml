@@ -24,12 +24,12 @@
         <ui:VisualElement name="TaskPanelContainer" style="display: none; flex-grow: 1; flex-direction: column; align-items: center; justify-content: center; padding: 40px;">
             <ui:Label text="Instructie komt hier..." name="InstructionText" style="color: rgb(255, 255, 255); font-size: 32px; -unity-font-style: bold; margin-bottom: 20px; white-space: normal; -unity-text-align: middle-center; flex-shrink: 0;"/>
             
-            <ui:VisualElement style="background-color: rgb(26, 29, 36); border-radius: 5px; border-left-color: rgb(52, 152, 219); border-left-width: 5px; padding: 20px; width: 80%; max-width: 600px;">
-                <ui:Label text="Extra informatie over de PBM komt hier..." name="InfoText" style="color: rgb(200, 200, 200); font-size: 22px; white-space: normal;"/>
-                <ui:Button name="BtnCancelModule" text="Module Afbreken" style="background-color: rgb(192, 57, 43); color: white; border-radius: 5px; padding: 10px; margin-top: 20px; font-size: 18px;" />
-            </ui:VisualElement>
+        <ui:VisualElement style="background-color: #1A1D24; border-radius: 5px; border-left-color: #FFD500; border-left-width: 7px; padding: 20px; width: 80%; max-width: 600px; border-top-color: #1A1D24; border-right-color: #1A1D24; border-bottom-color: #1A1D24; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px;">
+            <ui:Label text="Extra informatie over de PBM komt hier..." name="InfoText" style="color: #ffffff; font-size: 22px; white-space: normal; -unity-font-style: bold;"/>
+            <ui:Button name="BtnCancelModule" text="Module Afbreken" style="background-color: #E63946; color: white; border-radius: 5px; padding: 10px; margin-top: 20px; font-size: 18px;" />
+        </ui:VisualElement>
             
-            <ui:VisualElement name="HelpPanel" style="display: none; background-color: rgb(139, 0, 0); border-radius: 5px; padding: 20px; margin-top: 30px; width: 80%; max-width: 600px;">
+            <ui:VisualElement name="HelpPanel" style="display: none; background-color: #E63946; border-radius: 5px; padding: 20px; margin-top: 30px; width: 80%; max-width: 600px;">
                 <ui:Label text="Foutmelding komt hier..." name="HelpMessage" style="color: rgb(255, 255, 255); font-size: 22px; -unity-font-style: bold; white-space: normal; -unity-text-align: middle-center;"/>
             </ui:VisualElement>
    
@@ -47,7 +47,7 @@
                         <ui:Button name="Btn3" text="3" style="width: 50px; height: 50px; font-size: 20px; -unity-font-style: bold; background-color: #252930; color: white; margin: 2px;" />
                         <ui:Button name="Btn4" text="4" style="width: 50px; height: 50px; font-size: 20px; -unity-font-style: bold; background-color: #252930; color: white; margin: 2px;" />
                         <ui:Button name="Btn5" text="5" style="width: 50px; height: 50px; font-size: 20px; -unity-font-style: bold; background-color: #252930; color: white; margin: 2px;" />
-                        <ui:Button name="BtnClear" text="C" style="width: 50px; height: 50px; font-size: 20px; -unity-font-style: bold; background-color: #E74C3C; color: white; margin: 2px;" />
+                        <ui:Button name="BtnClear" text="C" style="width: 50px; height: 50px; font-size: 20px; -unity-font-style: bold; background-color: #E63946; color: white; margin: 2px;" />
                     </ui:VisualElement>
                     
                     <ui:VisualElement style="flex-direction: row; justify-content: center;">

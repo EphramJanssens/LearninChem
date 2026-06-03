@@ -1,0 +1,19 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement style="background-color: rgb(37, 41, 48); border-top-color: rgb(37, 41, 48); border-right-color: rgb(37, 41, 48); border-bottom-color: rgb(37, 41, 48); border-left-color: rgb(37, 41, 48); border-top-width: 4px; border-right-width: 4px; border-bottom-width: 4px; border-left-width: 4px; border-radius: 12px; padding: 40px; width: 900px; align-self: center;">
+        <ui:Label text="LABORATORIUM WEGWIJZER" style="color: rgb(255, 255, 255); font-size: 48px; -unity-font-style: bold; -unity-text-align: middle-center; margin-bottom: 40px; -unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Examples%20&amp;%20Extras/Fonts/Roboto-Bold.ttf?fileID=12800000&amp;guid=4beb055f07aaff244873dec698d0363e&amp;type=3#Roboto-Bold&quot;);"/>
+        <ui:VisualElement style="flex-direction: row; justify-content: flex-end; background-color: rgb(26, 29, 36); border-right-color: rgb(52, 152, 219); border-right-width: 12px; border-radius: 8px; margin-bottom: 30px; align-items: center; padding: 25px;">
+            <ui:VisualElement style="flex-direction: column; align-items: flex-end;">
+                <ui:Label text="MODULE 2" style="color: rgb(52, 152, 219); font-size: 32px; -unity-font-style: bold; margin-bottom: -5px; -unity-font-definition: resource(&quot;Fonts &amp; Materials/Roboto-Bold&quot;);"/>
+                <ui:Label text="Titratie &amp; Vloeistoffen" style="color: rgb(255, 255, 255); font-size: 48px; -unity-font-style: bold; -unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Examples%20&amp;%20Extras/Fonts/Roboto-Bold.ttf?fileID=12800000&amp;guid=4beb055f07aaff244873dec698d0363e&amp;type=3#Roboto-Bold&quot;);"/>
+            </ui:VisualElement>
+            <ui:Label text="▶" style="color: rgb(52, 152, 219); font-size: 90px; margin-left: 40px; -unity-text-align: middle-center;"/>
+        </ui:VisualElement>
+        <ui:VisualElement style="flex-direction: row; justify-content: flex-end; background-color: rgba(241, 196, 15, 0.08); border-right-color: rgb(255, 213, 0); border-right-width: 12px; border-top-color: rgba(241, 196, 15, 0.2); border-left-color: rgba(241, 196, 15, 0.2); border-bottom-color: rgba(241, 196, 15, 0.2); border-top-width: 2px; border-left-width: 2px; border-bottom-width: 2px; border-radius: 8px; align-items: center; padding: 25px;">
+            <ui:VisualElement style="flex-direction: column; align-items: flex-end;">
+                <ui:Label text="MODULE 3" style="color: rgb(255, 213, 0); font-size: 32px; -unity-font-style: bold; margin-bottom: -5px; -unity-font-definition: resource(&quot;Fonts &amp; Materials/Roboto-Bold&quot;);"/>
+                <ui:Label text="Kalk &amp; Geleidbaarheid" style="color: rgb(255, 255, 255); font-size: 48px; -unity-font-style: bold; -unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Examples%20&amp;%20Extras/Fonts/Roboto-Bold.ttf?fileID=12800000&amp;guid=4beb055f07aaff244873dec698d0363e&amp;type=3#Roboto-Bold&quot;);"/>
+            </ui:VisualElement>
+            <ui:Label text="▶" style="color: rgb(255, 213, 0); font-size: 90px; margin-left: 40px; -unity-text-align: middle-center;"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

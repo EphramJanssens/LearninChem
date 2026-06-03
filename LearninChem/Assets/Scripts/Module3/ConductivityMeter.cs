@@ -1,6 +1,11 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 
+/*
+ * Functie: Simuleert een geleidbaarheidsmeting (met realistische fluctuaties en een willekeurige eindwaarde) zodra de elektrode de vloeistof raakt. Controleert of de oplossing eerst is geroerd.
+ * Invloed: Voorziet de DashboardInputValidator van de juiste eindwaarde en stuurt het succes signaal ("InsertProbe") of foutmeldingen door naar de UniversalProcedureManager.
+ */
+
 public class ConductivityMeter : MonoBehaviour
 {
     public static ConductivityMeter Instance;
@@ -18,6 +23,8 @@ public class ConductivityMeter : MonoBehaviour
     private bool isMeasuring = false;
     private bool hasMeasured = false;
     private float timer = 0f;
+    
+    public bool isSolutionStirred = false; 
     
     public int finalValue { get; private set; } 
 
@@ -45,6 +52,17 @@ public class ConductivityMeter : MonoBehaviour
 
         if (other.CompareTag(targetTag))
         {
+            if (!isSolutionStirred)
+            {
+                Debug.LogWarning("<color=orange>[ConductivityMeter]</color> Meting geblokkeerd: Oplossing is nog niet geroerd!");
+                
+                if (UniversalProcedureManager.Instance != null)
+                {
+                    UniversalProcedureManager.Instance.ShowGlobalFailure("Fout! Je moet de oplossing eerst goed roeren voordat je een betrouwbare meting kan doen.");
+                }
+                return;
+            }
+
             StartMeasurement();
         }
     }
@@ -92,6 +110,9 @@ public class ConductivityMeter : MonoBehaviour
         hasMeasured = false;
         timer = 0f;
         finalValue = 0;
+        
+        isSolutionStirred = false; 
+        
         if (displayLabel != null) displayLabel.text = "--- µS/cm";
     }
 }
