@@ -1,5 +1,10 @@
 using UnityEngine;
 
+/*
+ * Functie: Beheert de timer en de visuele kleuromslag (Lerp) van de vloeistof tijdens de titratie, en controleert op overtitratie (fail-state).
+ * Invloed: Communiceert met de UniversalProcedureManager bij een mislukking. Wordt aangestuurd door de BuretValve (Start/Stop) en LiquidTriggerZone (voorbereiding).
+ */
+
 public class TitrationController : MonoBehaviour
 {
     public static TitrationController Instance;
@@ -21,6 +26,9 @@ public class TitrationController : MonoBehaviour
     public bool isFailed = false;
     public bool isBeakerPrepared = false; 
 
+/*
+* Zorgt dat dit script overal bereikbaar is (Singleton) en verifieert of het 3D materiaal van de vloeistof succesvol is ingeladen.
+*/
     void Awake()
     {
         Instance = this;
@@ -35,6 +43,9 @@ public class TitrationController : MonoBehaviour
         }
     }
 
+/*
+* Controleert eerst of de beker voorbereid is (indicator toegevoegd), start de timer en haalt de vloeistof uit een eventuele fail state.
+*/
     public void StartTitration()
     {
         if (!isBeakerPrepared)
@@ -48,12 +59,18 @@ public class TitrationController : MonoBehaviour
         isFailed = false;
     }
 
+/*
+* Pauzeert de timer wanneer de speler de kraan van de buret dichtdraait.
+*/
     public void StopTitration()
     {
         Debug.Log($"<color=cyan>[TitrationController]</color> StopTitration aangeroepen. Eindtijd: {titrationTimer} seconden.");
         isTitrating = false;
     }
 
+/*
+* Reset de tijdsmeting, fail states en herstelt de transparante startkleur van het materiaal.
+*/
     public void ResetLiquid()
     {
         isTitrating = false;
@@ -68,6 +85,9 @@ public class TitrationController : MonoBehaviour
         }
     }
 
+/*
+* Voert elke frame controles uit als de kraan open staat. Berekent de vloeiende kleurovergang (Lerp) op basis van tijd, en triggert de overtitratie fout als de limiet wordt overschreden.
+*/
     void Update()
     {
         if (isTitrating)

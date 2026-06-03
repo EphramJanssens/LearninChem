@@ -1,6 +1,11 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 
+/* 
+ * Functie: Beheert de UI van het startscherm en verwerkt de knopklikken voor de module selectie en het afsluiten van de app.
+ * Invloed: Leest de ModuleData (ScriptableObjects) in en activeert de gekozen module door UniversalProcedureManager.StartModule() aan te roepen.
+ */
+
 public class MainMenuController : MonoBehaviour
 {
     [Header("UI Koppeling")]
@@ -14,6 +19,9 @@ public class MainMenuController : MonoBehaviour
     private VisualElement mainMenuContainer;
     private Collider uiCollider;
 
+/*
+* Koppelt het UI document en voegt klik events toe aan de module knoppen en de afsluit-knop.
+*/
     void OnEnable()
     {
         uiCollider = GetComponent<Collider>();
@@ -37,6 +45,11 @@ public class MainMenuController : MonoBehaviour
         }
     }
 
+/*
+* Verbergt het hoofdmenu,
+* zet de menu collider uit (zodat spelers er niet per ongeluk in de achtergrond op klikken)
+* en geeft het gekozen startbestand door aan de UniversalProcedureManager.
+*/
     private void StartSelectedModule(ModuleData selectedData)
     {
         if (selectedData == null)
@@ -56,6 +69,9 @@ public class MainMenuController : MonoBehaviour
         }
     }
 
+/*
+* Verbergt het hoofdmenu,
+*/
     public void ShowMainMenu()
     {
         if (mainMenuContainer != null) mainMenuContainer.style.display = DisplayStyle.Flex;

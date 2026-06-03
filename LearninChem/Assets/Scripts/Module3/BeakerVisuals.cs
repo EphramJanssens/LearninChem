@@ -1,6 +1,11 @@
 using System.Collections;
 using UnityEngine;
 
+/*
+ * Functie: Zorgt voor de visuele kleurveranderingen van de maatbeker in Module 3 (kalkpoeder toevoegen en verdunnen met water) met behulp van soepele transities (Lerp).
+ * Invloed: Een puur visueel script dat door andere scripts (WeighingScale en LiquidTriggerZone) wordt aangestuurd; heeft zelf geen invloed op andere logica.
+ */
+
 public class BeakerVisuals : MonoBehaviour
 {
     public static BeakerVisuals Instance;

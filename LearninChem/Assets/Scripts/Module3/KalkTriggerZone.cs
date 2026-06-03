@@ -1,5 +1,10 @@
 using UnityEngine;
 
+/*
+ * Functie: Detecteert wanneer de kalkfles de zone van de weegschaal raakt en vraagt toestemming om kalk toe te voegen, inclusief anti spam.
+ * Invloed: Roept direct de AddKalk() functie aan op het gekoppelde WeighingScale script.
+ */
+
 public class KalkTriggerZone : MonoBehaviour
 {
     [Header("Koppelingen")]

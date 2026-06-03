@@ -1,5 +1,10 @@
 using UnityEngine;
 
+/*
+ * Functie: Meet hoelang en hoe snel een glazen roerstaaf (StirRod) door de vloeistof wordt bewogen totdat de benodigde roertijd is bereikt.
+ * Invloed: Ontgrendelt de meting in ConductivityMeter (isSolutionStirred = true) en stuurt het succes signaal ("StirSolution") door naar de UniversalProcedureManager.
+ */
+
 public class StirDetector : MonoBehaviour
 {
     [Header("Instellingen")]

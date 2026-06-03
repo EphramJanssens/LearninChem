@@ -1,5 +1,10 @@
 using UnityEngine;
 
+/* 
+ * Functie: Verandert het materiaal van de virtuele handen naar groene latex handschoenen zodra de speler de dispenser aanraakt.
+ * Invloed: Stuurt een succes signaal (actionID) door naar de UniversalProcedureManager om de stap te voltooien en kan gereset worden door de manager.
+ */
+
 public class GloveDispenser : MonoBehaviour
 {
     [Header("VR Hand Renderers")]

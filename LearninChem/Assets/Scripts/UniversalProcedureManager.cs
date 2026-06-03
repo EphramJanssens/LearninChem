@@ -1,6 +1,11 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 
+/* 
+ * Functie: Het centrale hart (Singleton) van de applicatie dat de logica, voortgang en veiligheidscontroles van de actieve module beheert.
+ * Invloed: Ontvangt acties van alle objecten in de wereld, vergelijkt deze met de ModuleData, stuurt de WorkstationDashboards aan met nieuwe tekst, en activeert de reset-functies van alle ResettableProps en controllers in de scene.
+ */
+
 public class UniversalProcedureManager : MonoBehaviour
 {
     public static UniversalProcedureManager Instance;
@@ -37,6 +42,11 @@ public class UniversalProcedureManager : MonoBehaviour
         ResetAllDashboards();
     }
 
+/*
+* Laadt de gekozen blauwdruk in.
+* reset de fysieke wereld.
+* teleporteert de speler en activeert het juiste dashboard voor die module.
+*/
     public void StartModule(ModuleData module)
     {
         activeModule = module;
@@ -53,6 +63,10 @@ public class UniversalProcedureManager : MonoBehaviour
         PrintCurrentStep();
     }
 
+/*
+* Vergelijkt een inkomende actie (bijv. "OpenValve") met het verwachte stappenplan.
+* Bij succes gaat de speler naar de volgende stap; bij een fout triggert dit een waarschuwing.
+*/
     public void OnActionTriggered(string incomingActionID)
     {
         if (!isModuleActive || activeModule == null) return;
@@ -87,6 +101,9 @@ public class UniversalProcedureManager : MonoBehaviour
         }
     }
 
+/*
+* Haalt de actuele instructieteksten uit de ModuleData en stuurt deze naar het actieve dashboard.
+*/
     void PrintCurrentStep()
     {
         if (activeModule == null || currentStepIndex >= activeModule.stepActionIDs.Length) return;
@@ -100,6 +117,9 @@ public class UniversalProcedureManager : MonoBehaviour
         }
     }
 
+/*
+* Deactiveert alle werktafel schermen.
+*/
     private void ResetAllDashboards()
     {
         if (dashboardModule1 != null) dashboardModule1.DeactivateDashboard();
@@ -107,6 +127,9 @@ public class UniversalProcedureManager : MonoBehaviour
         if (dashboardModule3 != null) dashboardModule3.DeactivateDashboard();
     }
 
+/*
+* Zoekt alle interactieve objecten (weegschaal, bekers, meters) in de ruimte en roept hun individuele reset functies aan om de ruimte op te ruimen.
+*/
     private void ResetPhysicalProps()
     {
         ResettableProp[] allProps = FindObjectsByType<ResettableProp>(FindObjectsSortMode.None);
@@ -169,6 +192,9 @@ public class UniversalProcedureManager : MonoBehaviour
         Debug.Log("<color=orange>[Manager]</color> Alle fysieke laboratorium objecten en detectors zijn gereset.");
     }
 
+/*
+* Breekt de huidige sessie af, reset de wereld, teleporteert de speler terug naar het startpunt en toont het hoofdmenu.
+*/
     public void ReturnToMainMenu()
     {
         currentStepIndex = 0;
@@ -195,6 +221,9 @@ public class UniversalProcedureManager : MonoBehaviour
         }
     }
 
+/*
+* Stuurt een rode foutmelding inclusief geluidseffect naar het actieve dashboard.
+*/
     public void ShowGlobalFailure(string message)
     {
         if (currentActiveDashboard != null)

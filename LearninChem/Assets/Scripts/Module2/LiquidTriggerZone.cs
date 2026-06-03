@@ -1,5 +1,10 @@
 using UnityEngine;
 
+/*
+ * Functie: Detecteert via collisies of specifieke vloeistoffen (zoals indicator of water) in een beker worden gegoten, voorzien van een anti-spam cooldown.
+ * Invloed: Updatet de status in TitrationController of BeakerVisuals, en geeft de bijbehorende actie (bijv. "AddIndicator" of "AddWater") door aan de UniversalProcedureManager.
+ */
+
 public class LiquidTriggerZone : MonoBehaviour
 {
     [Header("Welk object verwachten we hier?")]

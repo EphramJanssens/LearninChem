@@ -2,6 +2,11 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
+/* 
+ * Functie: Beheert de interactie (open/dicht draaien) van de buret-kraan in VR, inclusief een animatie en anti-spam cooldown.
+ * Invloed: Start en stopt de timer in TitrationController en stuurt de bijbehorende succes acties door naar de UniversalProcedureManager.
+ */
+
 public class BuretValve : MonoBehaviour
 {
     private XRSimpleInteractable interactable;

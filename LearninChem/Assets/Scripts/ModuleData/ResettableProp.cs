@@ -2,6 +2,11 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
+/* 
+ * Functie: Onthoudt bij het opstarten de originele positie, rotatie en zwaartekracht-status (kinematic) van een fysiek 3D-object.
+ * Invloed: Wordt aangestuurd door de UniversalProcedureManager om objecten terug te teleporteren; verbreekt hierbij kort de XR Grab Interactables zodat objecten uit handen of sockets vallen.
+ */
+
 public class ResettableProp : MonoBehaviour
 {
     private Vector3 startPosition;
@@ -33,14 +38,11 @@ public class ResettableProp : MonoBehaviour
 
 private IEnumerator ResetSequence()
     {
-        // 1. Forceer het object om uit handen OF sockets te vallen
         if (grabInteractable != null)
         {
-            // Door hem heel even uit en aan te zetten, breekt hij alle XR-verbindingen (zoals sockets)
             grabInteractable.enabled = false;
         }
 
-        // Geef Unity XR één frame de tijd om de socket leeg te maken
         yield return null; 
 
         if (rb != null)
@@ -55,7 +57,6 @@ private IEnumerator ResetSequence()
 
         yield return null;
 
-        // Nu is hij veilig los en kunnen we hem teleporteren
         transform.position = startPosition;
         transform.rotation = startRotation;
 
@@ -66,7 +67,6 @@ private IEnumerator ResetSequence()
             rb.isKinematic = originalIsKinematic;
         }
         
-        // Zet de interactie weer aan voor de volgende ronde
         if (grabInteractable != null)
         {
             grabInteractable.enabled = true;

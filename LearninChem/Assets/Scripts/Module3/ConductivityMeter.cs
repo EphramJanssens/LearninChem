@@ -1,6 +1,11 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 
+/*
+ * Functie: Simuleert een geleidbaarheidsmeting (met realistische fluctuaties en een willekeurige eindwaarde) zodra de elektrode de vloeistof raakt. Controleert of de oplossing eerst is geroerd.
+ * Invloed: Voorziet de DashboardInputValidator van de juiste eindwaarde en stuurt het succes signaal ("InsertProbe") of foutmeldingen door naar de UniversalProcedureManager.
+ */
+
 public class ConductivityMeter : MonoBehaviour
 {
     public static ConductivityMeter Instance;

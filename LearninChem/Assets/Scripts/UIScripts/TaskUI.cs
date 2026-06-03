@@ -12,6 +12,11 @@ public class TaskUI : MonoBehaviour
     private Label helpMessageLabel;
     private VisualElement completionPanel;
 
+/* 
+ * Functie: Een generieke UI-controller om simpelweg instructies, waarschuwingen en succes-statussen op een UIDocument te tonen.
+ * Invloed: Ontvangt commando's van buitenaf om teksten te updaten, maar beïnvloedt zelf geen andere logica of scripts.
+ */
+
     void Awake()
     {
         uiDocument = GetComponent<UIDocument>();
