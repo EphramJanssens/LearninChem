@@ -33,6 +33,9 @@ LearninChem is een standalone lokaal systeem (Client Only) zonder externe SQL of
 
 ## 🛠️ Installatie & Ontwikkeling
 
+**Link APK bestand LearninChem**
+https://drive.google.com/drive/folders/1ZzgFMJY7YAKWz_sSj5s8wtKuAwdSIrNf?usp=sharing
+
 **Systeemvereisten:**
 
 - Game Engine: **Unity 6** (versie 6000.3).
